@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atmatrix.wechat.infrastructure.dao.WechatMemberMapper">
+  <resultMap id="BaseResultMap" type="com.atmatrix.wechat.infrastructure.po.WechatMember">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="member_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_avatar" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_sex" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="member_province" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_city" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="memeber_signature" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="memeber_phones" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_owner" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, member_wxid, member_nickname, member_avatar, member_sex, member_province, member_city, 
+    memeber_signature, memeber_phones, group_id, group_nickname, is_owner, is_delete, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMemberExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from wechat_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMember">
+    insert into wechat_member (member_wxid, member_nickname,
+      member_avatar, member_sex, member_province,
+      member_city, memeber_signature, memeber_phones, 
+      group_id, group_nickname, is_owner, 
+      is_delete, create_time, update_time
+      )
+    values (#{memberWxid,jdbcType=VARCHAR}, #{memberNickname,jdbcType=VARCHAR},
+      #{memberAvatar,jdbcType=VARCHAR}, #{memberSex,jdbcType=INTEGER}, #{memberProvince,jdbcType=VARCHAR}, 
+      #{memberCity,jdbcType=VARCHAR}, #{memeberSignature,jdbcType=VARCHAR}, #{memeberPhones,jdbcType=VARCHAR}, 
+      #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, #{isOwner,jdbcType=BIT}, 
+      #{isDelete,jdbcType=BIT},now(),now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMember">
+    insert into wechat_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberWxid != null">
+        member_wxid,
+      </if>
+      <if test="memberNickname != null">
+        member_nickname,
+      </if>
+      <if test="memberAvatar != null">
+        member_avatar,
+      </if>
+      <if test="memberSex != null">
+        member_sex,
+      </if>
+      <if test="memberProvince != null">
+        member_province,
+      </if>
+      <if test="memberCity != null">
+        member_city,
+      </if>
+      <if test="memeberSignature != null">
+        memeber_signature,
+      </if>
+      <if test="memeberPhones != null">
+        memeber_phones,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="groupNickname != null">
+        group_nickname,
+      </if>
+      <if test="isOwner != null">
+        is_owner,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberWxid != null">
+        #{memberWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNickname != null">
+        #{memberNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="memberAvatar != null">
+        #{memberAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSex != null">
+        #{memberSex,jdbcType=INTEGER},
+      </if>
+      <if test="memberProvince != null">
+        #{memberProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCity != null">
+        #{memberCity,jdbcType=VARCHAR},
+      </if>
+      <if test="memeberSignature != null">
+        #{memeberSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="memeberPhones != null">
+        #{memeberPhones,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupNickname != null">
+        #{groupNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="isOwner != null">
+        #{isOwner,jdbcType=BIT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMemberExample" resultType="java.lang.Long">
+    select count(*) from wechat_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update wechat_member
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberWxid != null">
+        member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberNickname != null">
+        member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberAvatar != null">
+        member_avatar = #{record.memberAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberSex != null">
+        member_sex = #{record.memberSex,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberProvince != null">
+        member_province = #{record.memberProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberCity != null">
+        member_city = #{record.memberCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memeberSignature != null">
+        memeber_signature = #{record.memeberSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memeberPhones != null">
+        memeber_phones = #{record.memeberPhones,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupNickname != null">
+        group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isOwner != null">
+        is_owner = #{record.isOwner,jdbcType=BIT},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update wechat_member
+    set id = #{record.id,jdbcType=BIGINT},
+      member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
+      member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
+      member_avatar = #{record.memberAvatar,jdbcType=VARCHAR},
+      member_sex = #{record.memberSex,jdbcType=INTEGER},
+      member_province = #{record.memberProvince,jdbcType=VARCHAR},
+      member_city = #{record.memberCity,jdbcType=VARCHAR},
+      memeber_signature = #{record.memeberSignature,jdbcType=VARCHAR},
+      memeber_phones = #{record.memeberPhones,jdbcType=VARCHAR},
+      group_id = #{record.groupId,jdbcType=VARCHAR},
+      group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
+      is_owner = #{record.isOwner,jdbcType=BIT},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atmatrix.wechat.infrastructure.dao.WechatGroupMapper">
+  <resultMap id="BaseResultMap" type="com.atmatrix.wechat.infrastructure.po.WechatGroup">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="group_owner_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, group_id, group_nickname, group_count, group_owner_wxid, is_delete, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatGroupExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from wechat_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.atmatrix.wechat.infrastructure.po.WechatGroup">
+    insert into wechat_group (group_id, group_nickname,
+      group_count, group_owner_wxid, is_delete, 
+      create_time, update_time)
+    values (#{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR},
+      #{groupCount,jdbcType=INTEGER}, #{groupOwnerWxid,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatGroup">
+    insert into wechat_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="groupNickname != null">
+        group_nickname,
+      </if>
+      <if test="groupCount != null">
+        group_count,
+      </if>
+      <if test="groupOwnerWxid != null">
+        group_owner_wxid,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupNickname != null">
+        #{groupNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCount != null">
+        #{groupCount,jdbcType=INTEGER},
+      </if>
+      <if test="groupOwnerWxid != null">
+        #{groupOwnerWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatGroupExample" resultType="java.lang.Long">
+    select count(*) from wechat_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update wechat_group
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupNickname != null">
+        group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupCount != null">
+        group_count = #{record.groupCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupOwnerWxid != null">
+        group_owner_wxid = #{record.groupOwnerWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update wechat_group
+    set id = #{record.id,jdbcType=BIGINT},
+      group_id = #{record.groupId,jdbcType=VARCHAR},
+      group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
+      group_count = #{record.groupCount,jdbcType=INTEGER},
+      group_owner_wxid = #{record.groupOwnerWxid,jdbcType=VARCHAR},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
