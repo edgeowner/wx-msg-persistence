@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @MapperScan("com.atmatrix.wechat.infrastructure.dao")//配置mybatis接口包扫描
 @RestController
-
 public class WxMsgPersistenceApplication {
 
 	public static void main(String[] args) {
