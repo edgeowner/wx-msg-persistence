@@ -6,19 +6,19 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface WechatDuplicateMapper {
-    Long countByExample(WechatDuplicateExample example);
+    long countByExample(WechatDuplicateExample example);
 
-    Integer insert(WechatDuplicate record);
+    int insert(WechatDuplicate record);
 
-    Integer insertSelective(WechatDuplicate record);
+    int insertSelective(WechatDuplicate record);
 
     List<WechatDuplicate> selectByExampleWithBLOBs(WechatDuplicateExample example);
 
     List<WechatDuplicate> selectByExample(WechatDuplicateExample example);
 
-    Integer updateByExampleSelective(@Param("record") WechatDuplicate record, @Param("example") WechatDuplicateExample example);
+    int updateByExampleSelective(@Param("record") WechatDuplicate record, @Param("example") WechatDuplicateExample example);
 
-    Integer updateByExampleWithBLOBs(@Param("record") WechatDuplicate record, @Param("example") WechatDuplicateExample example);
+    int updateByExampleWithBLOBs(@Param("record") WechatDuplicate record, @Param("example") WechatDuplicateExample example);
 
-    Integer updateByExample(@Param("record") WechatDuplicate record, @Param("example") WechatDuplicateExample example);
+    int updateByExample(@Param("record") WechatDuplicate record, @Param("example") WechatDuplicateExample example);
 }

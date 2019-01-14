@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.atmatrix.wechat.infrastructure.po.WechatDuplicate">
     <constructor>
       <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="message_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="message_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="message_url" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="group_owner_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_key" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="msg_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_url" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -16,14 +16,14 @@
   <resultMap id="ResultMapWithBLOBs" type="com.atmatrix.wechat.infrastructure.po.WechatDuplicate">
     <constructor>
       <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="message_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="message_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="message_url" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="group_owner_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_key" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="msg_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_url" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="message_text" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+      <arg column="msg_text" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -85,11 +85,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, message_id, message_type, message_url, group_owner_wxid, is_delete, create_time, 
-    update_time
+    id, msg_id, msg_key, msg_type, msg_url, is_delete, create_time, update_time
   </sql>
   <sql id="Blob_Column_List">
-    message_text
+    msg_text
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.atmatrix.wechat.infrastructure.po.WechatDuplicateExample" resultMap="ResultMapWithBLOBs">
     select
@@ -124,13 +123,13 @@
     </if>
   </select>
   <insert id="insert" parameterType="com.atmatrix.wechat.infrastructure.po.WechatDuplicate">
-    insert into wechat_duplicate (id, message_id, message_type, 
-      message_url, group_owner_wxid, is_delete, 
-      create_time, update_time, message_text
+    insert into wechat_duplicate (id, msg_id, msg_key, 
+      msg_type, msg_url, is_delete, 
+      create_time, update_time, msg_text
       )
-    values (#{id,jdbcType=BIGINT}, #{messageId,jdbcType=BIGINT}, #{messageType,jdbcType=INTEGER}, 
-      #{messageUrl,jdbcType=VARCHAR}, #{groupOwnerWxid,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{messageText,jdbcType=LONGVARCHAR}
+    values (#{id,jdbcType=BIGINT}, #{msgId,jdbcType=VARCHAR}, #{msgKey,jdbcType=BIGINT}, 
+      #{msgType,jdbcType=INTEGER}, #{msgUrl,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{msgText,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatDuplicate">
@@ -139,17 +138,17 @@
       <if test="id != null">
         id,
       </if>
-      <if test="messageId != null">
-        message_id,
+      <if test="msgId != null">
+        msg_id,
       </if>
-      <if test="messageType != null">
-        message_type,
+      <if test="msgKey != null">
+        msg_key,
       </if>
-      <if test="messageUrl != null">
-        message_url,
+      <if test="msgType != null">
+        msg_type,
       </if>
-      <if test="groupOwnerWxid != null">
-        group_owner_wxid,
+      <if test="msgUrl != null">
+        msg_url,
       </if>
       <if test="isDelete != null">
         is_delete,
@@ -160,25 +159,25 @@
       <if test="updateTime != null">
         update_time,
       </if>
-      <if test="messageText != null">
-        message_text,
+      <if test="msgText != null">
+        msg_text,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="messageId != null">
-        #{messageId,jdbcType=BIGINT},
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
       </if>
-      <if test="messageType != null">
-        #{messageType,jdbcType=INTEGER},
+      <if test="msgKey != null">
+        #{msgKey,jdbcType=BIGINT},
       </if>
-      <if test="messageUrl != null">
-        #{messageUrl,jdbcType=VARCHAR},
+      <if test="msgType != null">
+        #{msgType,jdbcType=INTEGER},
       </if>
-      <if test="groupOwnerWxid != null">
-        #{groupOwnerWxid,jdbcType=VARCHAR},
+      <if test="msgUrl != null">
+        #{msgUrl,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=BIT},
@@ -189,8 +188,8 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="messageText != null">
-        #{messageText,jdbcType=LONGVARCHAR},
+      <if test="msgText != null">
+        #{msgText,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -206,17 +205,17 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.messageId != null">
-        message_id = #{record.messageId,jdbcType=BIGINT},
+      <if test="record.msgId != null">
+        msg_id = #{record.msgId,jdbcType=VARCHAR},
       </if>
-      <if test="record.messageType != null">
-        message_type = #{record.messageType,jdbcType=INTEGER},
+      <if test="record.msgKey != null">
+        msg_key = #{record.msgKey,jdbcType=BIGINT},
       </if>
-      <if test="record.messageUrl != null">
-        message_url = #{record.messageUrl,jdbcType=VARCHAR},
+      <if test="record.msgType != null">
+        msg_type = #{record.msgType,jdbcType=INTEGER},
       </if>
-      <if test="record.groupOwnerWxid != null">
-        group_owner_wxid = #{record.groupOwnerWxid,jdbcType=VARCHAR},
+      <if test="record.msgUrl != null">
+        msg_url = #{record.msgUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=BIT},
@@ -227,8 +226,8 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.messageText != null">
-        message_text = #{record.messageText,jdbcType=LONGVARCHAR},
+      <if test="record.msgText != null">
+        msg_text = #{record.msgText,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -238,14 +237,14 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update wechat_duplicate
     set id = #{record.id,jdbcType=BIGINT},
-      message_id = #{record.messageId,jdbcType=BIGINT},
-      message_type = #{record.messageType,jdbcType=INTEGER},
-      message_url = #{record.messageUrl,jdbcType=VARCHAR},
-      group_owner_wxid = #{record.groupOwnerWxid,jdbcType=VARCHAR},
+      msg_id = #{record.msgId,jdbcType=VARCHAR},
+      msg_key = #{record.msgKey,jdbcType=BIGINT},
+      msg_type = #{record.msgType,jdbcType=INTEGER},
+      msg_url = #{record.msgUrl,jdbcType=VARCHAR},
       is_delete = #{record.isDelete,jdbcType=BIT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      message_text = #{record.messageText,jdbcType=LONGVARCHAR}
+      msg_text = #{record.msgText,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -253,10 +252,10 @@
   <update id="updateByExample" parameterType="map">
     update wechat_duplicate
     set id = #{record.id,jdbcType=BIGINT},
-      message_id = #{record.messageId,jdbcType=BIGINT},
-      message_type = #{record.messageType,jdbcType=INTEGER},
-      message_url = #{record.messageUrl,jdbcType=VARCHAR},
-      group_owner_wxid = #{record.groupOwnerWxid,jdbcType=VARCHAR},
+      msg_id = #{record.msgId,jdbcType=VARCHAR},
+      msg_key = #{record.msgKey,jdbcType=BIGINT},
+      msg_type = #{record.msgType,jdbcType=INTEGER},
+      msg_url = #{record.msgUrl,jdbcType=VARCHAR},
       is_delete = #{record.isDelete,jdbcType=BIT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}

@@ -165,263 +165,263 @@ public class WechatDuplicateExample {
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdIsNull() {
-            addCriterion("message_id is null");
+        public Criteria andMsgIdIsNull() {
+            addCriterion("msg_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdIsNotNull() {
-            addCriterion("message_id is not null");
+        public Criteria andMsgIdIsNotNull() {
+            addCriterion("msg_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdEqualTo(Long value) {
-            addCriterion("message_id =", value, "messageId");
+        public Criteria andMsgIdEqualTo(String value) {
+            addCriterion("msg_id =", value, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdNotEqualTo(Long value) {
-            addCriterion("message_id <>", value, "messageId");
+        public Criteria andMsgIdNotEqualTo(String value) {
+            addCriterion("msg_id <>", value, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdGreaterThan(Long value) {
-            addCriterion("message_id >", value, "messageId");
+        public Criteria andMsgIdGreaterThan(String value) {
+            addCriterion("msg_id >", value, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("message_id >=", value, "messageId");
+        public Criteria andMsgIdGreaterThanOrEqualTo(String value) {
+            addCriterion("msg_id >=", value, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdLessThan(Long value) {
-            addCriterion("message_id <", value, "messageId");
+        public Criteria andMsgIdLessThan(String value) {
+            addCriterion("msg_id <", value, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdLessThanOrEqualTo(Long value) {
-            addCriterion("message_id <=", value, "messageId");
+        public Criteria andMsgIdLessThanOrEqualTo(String value) {
+            addCriterion("msg_id <=", value, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdIn(List<Long> values) {
-            addCriterion("message_id in", values, "messageId");
+        public Criteria andMsgIdLike(String value) {
+            addCriterion("msg_id like", value, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdNotIn(List<Long> values) {
-            addCriterion("message_id not in", values, "messageId");
+        public Criteria andMsgIdNotLike(String value) {
+            addCriterion("msg_id not like", value, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdBetween(Long value1, Long value2) {
-            addCriterion("message_id between", value1, value2, "messageId");
+        public Criteria andMsgIdIn(List<String> values) {
+            addCriterion("msg_id in", values, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageIdNotBetween(Long value1, Long value2) {
-            addCriterion("message_id not between", value1, value2, "messageId");
+        public Criteria andMsgIdNotIn(List<String> values) {
+            addCriterion("msg_id not in", values, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeIsNull() {
-            addCriterion("message_type is null");
+        public Criteria andMsgIdBetween(String value1, String value2) {
+            addCriterion("msg_id between", value1, value2, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeIsNotNull() {
-            addCriterion("message_type is not null");
+        public Criteria andMsgIdNotBetween(String value1, String value2) {
+            addCriterion("msg_id not between", value1, value2, "msgId");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeEqualTo(Integer value) {
-            addCriterion("message_type =", value, "messageType");
+        public Criteria andMsgKeyIsNull() {
+            addCriterion("msg_key is null");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeNotEqualTo(Integer value) {
-            addCriterion("message_type <>", value, "messageType");
+        public Criteria andMsgKeyIsNotNull() {
+            addCriterion("msg_key is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeGreaterThan(Integer value) {
-            addCriterion("message_type >", value, "messageType");
+        public Criteria andMsgKeyEqualTo(Long value) {
+            addCriterion("msg_key =", value, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("message_type >=", value, "messageType");
+        public Criteria andMsgKeyNotEqualTo(Long value) {
+            addCriterion("msg_key <>", value, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeLessThan(Integer value) {
-            addCriterion("message_type <", value, "messageType");
+        public Criteria andMsgKeyGreaterThan(Long value) {
+            addCriterion("msg_key >", value, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("message_type <=", value, "messageType");
+        public Criteria andMsgKeyGreaterThanOrEqualTo(Long value) {
+            addCriterion("msg_key >=", value, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeIn(List<Integer> values) {
-            addCriterion("message_type in", values, "messageType");
+        public Criteria andMsgKeyLessThan(Long value) {
+            addCriterion("msg_key <", value, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeNotIn(List<Integer> values) {
-            addCriterion("message_type not in", values, "messageType");
+        public Criteria andMsgKeyLessThanOrEqualTo(Long value) {
+            addCriterion("msg_key <=", value, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeBetween(Integer value1, Integer value2) {
-            addCriterion("message_type between", value1, value2, "messageType");
+        public Criteria andMsgKeyIn(List<Long> values) {
+            addCriterion("msg_key in", values, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("message_type not between", value1, value2, "messageType");
+        public Criteria andMsgKeyNotIn(List<Long> values) {
+            addCriterion("msg_key not in", values, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlIsNull() {
-            addCriterion("message_url is null");
+        public Criteria andMsgKeyBetween(Long value1, Long value2) {
+            addCriterion("msg_key between", value1, value2, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlIsNotNull() {
-            addCriterion("message_url is not null");
+        public Criteria andMsgKeyNotBetween(Long value1, Long value2) {
+            addCriterion("msg_key not between", value1, value2, "msgKey");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlEqualTo(String value) {
-            addCriterion("message_url =", value, "messageUrl");
+        public Criteria andMsgTypeIsNull() {
+            addCriterion("msg_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlNotEqualTo(String value) {
-            addCriterion("message_url <>", value, "messageUrl");
+        public Criteria andMsgTypeIsNotNull() {
+            addCriterion("msg_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlGreaterThan(String value) {
-            addCriterion("message_url >", value, "messageUrl");
+        public Criteria andMsgTypeEqualTo(Integer value) {
+            addCriterion("msg_type =", value, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlGreaterThanOrEqualTo(String value) {
-            addCriterion("message_url >=", value, "messageUrl");
+        public Criteria andMsgTypeNotEqualTo(Integer value) {
+            addCriterion("msg_type <>", value, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlLessThan(String value) {
-            addCriterion("message_url <", value, "messageUrl");
+        public Criteria andMsgTypeGreaterThan(Integer value) {
+            addCriterion("msg_type >", value, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlLessThanOrEqualTo(String value) {
-            addCriterion("message_url <=", value, "messageUrl");
+        public Criteria andMsgTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("msg_type >=", value, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlLike(String value) {
-            addCriterion("message_url like", value, "messageUrl");
+        public Criteria andMsgTypeLessThan(Integer value) {
+            addCriterion("msg_type <", value, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlNotLike(String value) {
-            addCriterion("message_url not like", value, "messageUrl");
+        public Criteria andMsgTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("msg_type <=", value, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlIn(List<String> values) {
-            addCriterion("message_url in", values, "messageUrl");
+        public Criteria andMsgTypeIn(List<Integer> values) {
+            addCriterion("msg_type in", values, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlNotIn(List<String> values) {
-            addCriterion("message_url not in", values, "messageUrl");
+        public Criteria andMsgTypeNotIn(List<Integer> values) {
+            addCriterion("msg_type not in", values, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlBetween(String value1, String value2) {
-            addCriterion("message_url between", value1, value2, "messageUrl");
+        public Criteria andMsgTypeBetween(Integer value1, Integer value2) {
+            addCriterion("msg_type between", value1, value2, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andMessageUrlNotBetween(String value1, String value2) {
-            addCriterion("message_url not between", value1, value2, "messageUrl");
+        public Criteria andMsgTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("msg_type not between", value1, value2, "msgType");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidIsNull() {
-            addCriterion("group_owner_wxid is null");
+        public Criteria andMsgUrlIsNull() {
+            addCriterion("msg_url is null");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidIsNotNull() {
-            addCriterion("group_owner_wxid is not null");
+        public Criteria andMsgUrlIsNotNull() {
+            addCriterion("msg_url is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidEqualTo(String value) {
-            addCriterion("group_owner_wxid =", value, "groupOwnerWxid");
+        public Criteria andMsgUrlEqualTo(String value) {
+            addCriterion("msg_url =", value, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidNotEqualTo(String value) {
-            addCriterion("group_owner_wxid <>", value, "groupOwnerWxid");
+        public Criteria andMsgUrlNotEqualTo(String value) {
+            addCriterion("msg_url <>", value, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidGreaterThan(String value) {
-            addCriterion("group_owner_wxid >", value, "groupOwnerWxid");
+        public Criteria andMsgUrlGreaterThan(String value) {
+            addCriterion("msg_url >", value, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidGreaterThanOrEqualTo(String value) {
-            addCriterion("group_owner_wxid >=", value, "groupOwnerWxid");
+        public Criteria andMsgUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("msg_url >=", value, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidLessThan(String value) {
-            addCriterion("group_owner_wxid <", value, "groupOwnerWxid");
+        public Criteria andMsgUrlLessThan(String value) {
+            addCriterion("msg_url <", value, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidLessThanOrEqualTo(String value) {
-            addCriterion("group_owner_wxid <=", value, "groupOwnerWxid");
+        public Criteria andMsgUrlLessThanOrEqualTo(String value) {
+            addCriterion("msg_url <=", value, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidLike(String value) {
-            addCriterion("group_owner_wxid like", value, "groupOwnerWxid");
+        public Criteria andMsgUrlLike(String value) {
+            addCriterion("msg_url like", value, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidNotLike(String value) {
-            addCriterion("group_owner_wxid not like", value, "groupOwnerWxid");
+        public Criteria andMsgUrlNotLike(String value) {
+            addCriterion("msg_url not like", value, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidIn(List<String> values) {
-            addCriterion("group_owner_wxid in", values, "groupOwnerWxid");
+        public Criteria andMsgUrlIn(List<String> values) {
+            addCriterion("msg_url in", values, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidNotIn(List<String> values) {
-            addCriterion("group_owner_wxid not in", values, "groupOwnerWxid");
+        public Criteria andMsgUrlNotIn(List<String> values) {
+            addCriterion("msg_url not in", values, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidBetween(String value1, String value2) {
-            addCriterion("group_owner_wxid between", value1, value2, "groupOwnerWxid");
+        public Criteria andMsgUrlBetween(String value1, String value2) {
+            addCriterion("msg_url between", value1, value2, "msgUrl");
             return (Criteria) this;
         }
 
-        public Criteria andGroupOwnerWxidNotBetween(String value1, String value2) {
-            addCriterion("group_owner_wxid not between", value1, value2, "groupOwnerWxid");
+        public Criteria andMsgUrlNotBetween(String value1, String value2) {
+            addCriterion("msg_url not between", value1, value2, "msgUrl");
             return (Criteria) this;
         }
 

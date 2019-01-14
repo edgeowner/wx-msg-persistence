@@ -61,11 +61,11 @@
         </javaClientGenerator>
 
 
-        <!--<table tableName="wechat_duplicate" domainObjectName="WechatDuplicate"-->
-               <!--enableCountByExample="true" enableUpdateByExample="true"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="true"-->
-               <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
+        <table tableName="wechat_duplicate" domainObjectName="WechatDuplicate"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
         <!--<table tableName="wechat_group" domainObjectName="WechatGroup"-->
                <!--enableCountByExample="true" enableUpdateByExample="true"-->
                <!--enableDeleteByExample="false" enableSelectByExample="true"-->
@@ -83,11 +83,7 @@
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
 
-        <table tableName="Test" domainObjectName="Test"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="false" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-        </table>
+
 
     </context>
 </generatorConfiguration>

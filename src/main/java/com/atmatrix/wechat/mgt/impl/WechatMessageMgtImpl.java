@@ -44,17 +44,21 @@ public class WechatMessageMgtImpl implements WechatMessageMgt {
         } else {
             sendTime = 0L;
         }
-        Date sdate = new Date(sendTime);
-        Long kafka_time = null;
+
+        Long kafkaTime = null;
         if (!StringUtils.isEmpty(wechatTextDto.getTs())) {
-            kafka_time = Long.valueOf(wechatTextDto.getTs());
+            kafkaTime = Long.valueOf(wechatTextDto.getTs());
         } else {
-            kafka_time = 0L;
+            kafkaTime = 0L;
         }
+
+        log.info(MessageFormat.format("sendTime: [{0}] kafka_time: [{1}]", sendTime, kafkaTime));
+        Date sdate = new Date(sendTime);
+        Date kdate = new Date(kafkaTime);
+
         WechatMessage wechatMessage = new WechatMessage();
         wechatMessage.setMsgType(type);
         wechatMessage.setMsgUrl(wechatTextDto.getImg());
-        Date kdate = new Date(kafka_time);
         wechatMessage.setMsgId(wechatTextDto.getId());
         wechatMessage.setMsgText(wechatTextDto.getText());
         wechatMessage.setMemberWxid(wxid);
@@ -66,8 +70,7 @@ public class WechatMessageMgtImpl implements WechatMessageMgt {
         wechatMessage.setSendTime(sdate);
         wechatMessage.setKafkaTime(kdate);
         Long key = wechatMessageMapper.insert(wechatMessage);
-//        return key;
-        return null;
+        return key;
     }
 
 
