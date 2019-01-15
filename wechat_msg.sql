@@ -11,20 +11,11 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 10/01/2019 20:19:20
+ Date: 15/01/2019 19:12:36
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for Test
--- ----------------------------
-DROP TABLE IF EXISTS `Test`;
-CREATE TABLE `Test` (
-  `id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Table structure for wechat_duplicate
@@ -32,11 +23,11 @@ CREATE TABLE `Test` (
 DROP TABLE IF EXISTS `wechat_duplicate`;
 CREATE TABLE `wechat_duplicate` (
   `id` bigint(18) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `message_id` bigint(18) NOT NULL COMMENT '消息源主键ID',
-  `message_text` text COLLATE utf8mb4_unicode_ci COMMENT '发送消息内容',
-  `message_type` int(4) NOT NULL COMMENT '消息类型: 1:文本，3:图片',
-  `message_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信消息的唯一标识',
-  `group_owner_wxid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '群组拥有者wxid',
+  `msg_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '消息源主键ID',
+  `msg_key` bigint(18) NOT NULL COMMENT '消息主键ID',
+  `msg_text` text COLLATE utf8mb4_unicode_ci COMMENT '发送消息内容',
+  `msg_type` int(4) NOT NULL COMMENT '消息类型: 1:文本，3:图片',
+  `msg_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信消息的唯一标识',
   `is_delete` tinyint(1) DEFAULT NULL COMMENT '是否删除：0:未删除 ，1:删除',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '入库时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -89,11 +80,14 @@ DROP TABLE IF EXISTS `wechat_message`;
 CREATE TABLE `wechat_message` (
   `id` bigint(18) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `msg_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信消息的唯一标识',
+  `msg_fwxid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信消息爬虫号',
   `msg_text` text COLLATE utf8mb4_unicode_ci COMMENT '发送消息内容',
   `msg_type` int(4) NOT NULL COMMENT '消息类型: 1:文本，3:图片',
   `msg_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '发送消息若为文件，存入文件的url',
   `member_wxid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '发送者头像链接',
+  `member_phones` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '发送者电话',
   `member_nickname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '群名称',
+  `member_signature` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '发送者微信签名',
   `group_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '该条消息发送者唯一标识',
   `group_nickname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '发送者微信群名称',
   `is_delete` tinyint(1) DEFAULT NULL COMMENT '是否删除：0:未删除 ，1:删除',
@@ -102,7 +96,7 @@ CREATE TABLE `wechat_message` (
   `send_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发送消息的时间',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '入库时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
