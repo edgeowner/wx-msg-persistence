@@ -5,11 +5,13 @@
     <constructor>
       <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_fwxid" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="msg_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="msg_url" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="member_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="member_phones" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="member_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_signature" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
@@ -24,11 +26,13 @@
     <constructor>
       <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_fwxid" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="msg_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="msg_url" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="member_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="member_phones" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="member_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_signature" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
@@ -99,8 +103,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, msg_id, msg_type, msg_url, member_wxid, member_phones, member_nickname, group_id, 
-    group_nickname, is_delete, is_distinct, kafka_time, send_time, create_time, update_time
+    id, msg_id, msg_fwxid, msg_type, msg_url, member_wxid, member_phones, member_nickname, 
+    member_signature, group_id, group_nickname, is_delete, is_distinct, kafka_time, send_time, 
+    create_time, update_time
   </sql>
   <sql id="Blob_Column_List">
     msg_text
@@ -137,19 +142,21 @@
       order by ${orderByClause}
     </if>
   </select>
-  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessage">
-    insert into wechat_message (id, msg_id, msg_type, 
-      msg_url, member_wxid, member_phones, 
-      member_nickname, group_id, group_nickname, 
-      is_delete, is_distinct, kafka_time, 
-      send_time, create_time, update_time, 
-      msg_text)
-    values (#{id,jdbcType=BIGINT}, #{msgId,jdbcType=VARCHAR}, #{msgType,jdbcType=INTEGER}, 
-      #{msgUrl,jdbcType=VARCHAR}, #{memberWxid,jdbcType=VARCHAR}, #{memberPhones,jdbcType=VARCHAR}, 
-      #{memberNickname,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, 
-      #{isDelete,jdbcType=BIT}, #{isDistinct,jdbcType=BIT}, #{kafkaTime,jdbcType=TIMESTAMP}, 
-      #{sendTime,jdbcType=TIMESTAMP},now(),now(),
-      #{msgText,jdbcType=LONGVARCHAR})
+  <insert id="insert" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessage">
+    insert into wechat_message (id, msg_id, msg_fwxid, 
+      msg_type, msg_url, member_wxid, 
+      member_phones, member_nickname, member_signature, 
+      group_id, group_nickname, is_delete, 
+      is_distinct, kafka_time, send_time, 
+      create_time, update_time, msg_text
+      )
+    values (#{id,jdbcType=BIGINT}, #{msgId,jdbcType=VARCHAR}, #{msgFwxid,jdbcType=VARCHAR}, 
+      #{msgType,jdbcType=INTEGER}, #{msgUrl,jdbcType=VARCHAR}, #{memberWxid,jdbcType=VARCHAR}, 
+      #{memberPhones,jdbcType=VARCHAR}, #{memberNickname,jdbcType=VARCHAR}, #{memberSignature,jdbcType=VARCHAR}, 
+      #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
+      #{isDistinct,jdbcType=BIT}, #{kafkaTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{msgText,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessage">
     insert into wechat_message
@@ -159,6 +166,9 @@
       </if>
       <if test="msgId != null">
         msg_id,
+      </if>
+      <if test="msgFwxid != null">
+        msg_fwxid,
       </if>
       <if test="msgType != null">
         msg_type,
@@ -174,6 +184,9 @@
       </if>
       <if test="memberNickname != null">
         member_nickname,
+      </if>
+      <if test="memberSignature != null">
+        member_signature,
       </if>
       <if test="groupId != null">
         group_id,
@@ -210,6 +223,9 @@
       <if test="msgId != null">
         #{msgId,jdbcType=VARCHAR},
       </if>
+      <if test="msgFwxid != null">
+        #{msgFwxid,jdbcType=VARCHAR},
+      </if>
       <if test="msgType != null">
         #{msgType,jdbcType=INTEGER},
       </if>
@@ -224,6 +240,9 @@
       </if>
       <if test="memberNickname != null">
         #{memberNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSignature != null">
+        #{memberSignature,jdbcType=VARCHAR},
       </if>
       <if test="groupId != null">
         #{groupId,jdbcType=VARCHAR},
@@ -269,6 +288,9 @@
       <if test="record.msgId != null">
         msg_id = #{record.msgId,jdbcType=VARCHAR},
       </if>
+      <if test="record.msgFwxid != null">
+        msg_fwxid = #{record.msgFwxid,jdbcType=VARCHAR},
+      </if>
       <if test="record.msgType != null">
         msg_type = #{record.msgType,jdbcType=INTEGER},
       </if>
@@ -283,6 +305,9 @@
       </if>
       <if test="record.memberNickname != null">
         member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberSignature != null">
+        member_signature = #{record.memberSignature,jdbcType=VARCHAR},
       </if>
       <if test="record.groupId != null">
         group_id = #{record.groupId,jdbcType=VARCHAR},
@@ -320,11 +345,13 @@
     update wechat_message
     set id = #{record.id,jdbcType=BIGINT},
       msg_id = #{record.msgId,jdbcType=VARCHAR},
+      msg_fwxid = #{record.msgFwxid,jdbcType=VARCHAR},
       msg_type = #{record.msgType,jdbcType=INTEGER},
       msg_url = #{record.msgUrl,jdbcType=VARCHAR},
       member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
       member_phones = #{record.memberPhones,jdbcType=VARCHAR},
       member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
+      member_signature = #{record.memberSignature,jdbcType=VARCHAR},
       group_id = #{record.groupId,jdbcType=VARCHAR},
       group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
       is_delete = #{record.isDelete,jdbcType=BIT},
@@ -342,11 +369,13 @@
     update wechat_message
     set id = #{record.id,jdbcType=BIGINT},
       msg_id = #{record.msgId,jdbcType=VARCHAR},
+      msg_fwxid = #{record.msgFwxid,jdbcType=VARCHAR},
       msg_type = #{record.msgType,jdbcType=INTEGER},
       msg_url = #{record.msgUrl,jdbcType=VARCHAR},
       member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
       member_phones = #{record.memberPhones,jdbcType=VARCHAR},
       member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
+      member_signature = #{record.memberSignature,jdbcType=VARCHAR},
       group_id = #{record.groupId,jdbcType=VARCHAR},
       group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
       is_delete = #{record.isDelete,jdbcType=BIT},
@@ -363,12 +392,14 @@
   <insert id="batchInsert" keyProperty="id" useGeneratedKeys="true" parameterType="java.util.List">
     insert into wechat_message(
     msg_id,
+    msg_fwxid,
     msg_text,
     msg_type,
     msg_url,
     member_wxid,
-    member_nickname,
     member_phones,
+    member_nickname,
+    member_signature,
     group_id,
     group_nickname,
     is_delete,
@@ -381,12 +412,14 @@
     <foreach collection="list" item="item" index="index" separator=",">
       (
       #{item.msgId},
+      #{item.msgFwxid},
       #{item.msgText},
       #{item.msgType},
       #{item.msgUrl},
       #{item.memberWxid},
-      #{item.memberNickname},
       #{item.memberPhones},
+      #{item.memberNickname},
+      #{item.memberSignature},
       #{item.groupId},
       #{item.groupNickname},
       0,

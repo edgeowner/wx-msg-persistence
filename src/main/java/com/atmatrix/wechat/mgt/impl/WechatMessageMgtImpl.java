@@ -57,13 +57,18 @@ public class WechatMessageMgtImpl implements WechatMessageMgt {
         Date kdate = new Date(kafkaTime);
 
         WechatMessage wechatMessage = new WechatMessage();
+        wechatMessage.setMsgId(wechatTextDto.getId());
+        wechatMessage.setMsgFwxid(wechatTextDto.getFwid());
         wechatMessage.setMsgType(type);
         wechatMessage.setMsgUrl(wechatTextDto.getImg());
-        wechatMessage.setMsgId(wechatTextDto.getId());
         wechatMessage.setMsgText(wechatTextDto.getText());
+
+
         wechatMessage.setMemberWxid(wxid);
         wechatMessage.setMemberPhones(wechatTextDto.getPno());
         wechatMessage.setMemberNickname(wechatTextDto.getNm());
+        wechatMessage.setMemberSignature(wechatTextDto.getSig());
+
         wechatMessage.setGroupId(groupId);
         wechatMessage.setGroupNickname(wechatTextDto.getGn());
 

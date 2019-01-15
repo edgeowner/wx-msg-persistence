@@ -235,6 +235,76 @@ public class WechatMessageExample {
             return (Criteria) this;
         }
 
+        public Criteria andMsgFwxidIsNull() {
+            addCriterion("msg_fwxid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidIsNotNull() {
+            addCriterion("msg_fwxid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidEqualTo(String value) {
+            addCriterion("msg_fwxid =", value, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidNotEqualTo(String value) {
+            addCriterion("msg_fwxid <>", value, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidGreaterThan(String value) {
+            addCriterion("msg_fwxid >", value, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidGreaterThanOrEqualTo(String value) {
+            addCriterion("msg_fwxid >=", value, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidLessThan(String value) {
+            addCriterion("msg_fwxid <", value, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidLessThanOrEqualTo(String value) {
+            addCriterion("msg_fwxid <=", value, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidLike(String value) {
+            addCriterion("msg_fwxid like", value, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidNotLike(String value) {
+            addCriterion("msg_fwxid not like", value, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidIn(List<String> values) {
+            addCriterion("msg_fwxid in", values, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidNotIn(List<String> values) {
+            addCriterion("msg_fwxid not in", values, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidBetween(String value1, String value2) {
+            addCriterion("msg_fwxid between", value1, value2, "msgFwxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMsgFwxidNotBetween(String value1, String value2) {
+            addCriterion("msg_fwxid not between", value1, value2, "msgFwxid");
+            return (Criteria) this;
+        }
+
         public Criteria andMsgTypeIsNull() {
             addCriterion("msg_type is null");
             return (Criteria) this;
@@ -572,6 +642,76 @@ public class WechatMessageExample {
 
         public Criteria andMemberNicknameNotBetween(String value1, String value2) {
             addCriterion("member_nickname not between", value1, value2, "memberNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureIsNull() {
+            addCriterion("member_signature is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureIsNotNull() {
+            addCriterion("member_signature is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureEqualTo(String value) {
+            addCriterion("member_signature =", value, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureNotEqualTo(String value) {
+            addCriterion("member_signature <>", value, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureGreaterThan(String value) {
+            addCriterion("member_signature >", value, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureGreaterThanOrEqualTo(String value) {
+            addCriterion("member_signature >=", value, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureLessThan(String value) {
+            addCriterion("member_signature <", value, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureLessThanOrEqualTo(String value) {
+            addCriterion("member_signature <=", value, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureLike(String value) {
+            addCriterion("member_signature like", value, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureNotLike(String value) {
+            addCriterion("member_signature not like", value, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureIn(List<String> values) {
+            addCriterion("member_signature in", values, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureNotIn(List<String> values) {
+            addCriterion("member_signature not in", values, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureBetween(String value1, String value2) {
+            addCriterion("member_signature between", value1, value2, "memberSignature");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberSignatureNotBetween(String value1, String value2) {
+            addCriterion("member_signature not between", value1, value2, "memberSignature");
             return (Criteria) this;
         }
 

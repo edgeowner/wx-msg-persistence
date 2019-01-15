@@ -28,6 +28,8 @@ public class WechatTextDto implements Serializable {
      * 'tags': ''     }
      */
 
+    private String fwid;    // (新增2019-01-14) 消息爬虫微信id
+
     private String sid;  // 发送者唯一标识（必要字段）
     private String nm;  // 发送者名字 （必要字段）
     private String head; // 发送者头像 （必要字段）

@@ -10,6 +10,8 @@ public class WechatMessage {
 
     private String msgId;
 
+    private String msgFwxid;
+
     private Integer msgType;
 
     private String msgUrl;
@@ -19,6 +21,8 @@ public class WechatMessage {
     private String memberPhones;
 
     private String memberNickname;
+
+    private String memberSignature;
 
     private String groupId;
 
@@ -37,5 +41,6 @@ public class WechatMessage {
     private Date updateTime;
 
     private String msgText;
+
 
 }

@@ -10,7 +10,7 @@ public interface WechatMessageMapper {
 
     Long insert(WechatMessage record);
 
-    Long insertSelective(WechatMessage record);
+    Integer insertSelective(WechatMessage record);
 
     List<WechatMessage> selectByExampleWithBLOBs(WechatMessageExample example);
 
