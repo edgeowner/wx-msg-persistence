@@ -16,6 +16,8 @@ public class WechatMessage {
 
     private String memberWxid;
 
+    private String memberPhones;
+
     private String memberNickname;
 
     private String groupId;
@@ -35,6 +37,5 @@ public class WechatMessage {
     private Date updateTime;
 
     private String msgText;
-
 
 }

@@ -31,6 +31,7 @@ public class DemoController {
 
             Gson gson = new Gson();
             String requestData = gson.toJson(wechatMsgDto);
+            log.info(MessageFormat.format("requestData:[{0}]",requestData));
             return WebUtil.success("接收消息成功");
         } catch (Exception e) {
             e.printStackTrace();

@@ -61,7 +61,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="wechat_duplicate" domainObjectName="WechatDuplicate"
+        <table tableName="wechat_message" domainObjectName="WechatMessage"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="false" enableSelectByExample="true"
                selectByExampleQueryId="true">

@@ -3,8 +3,6 @@ package com.atmatrix.wechat.infrastructure.dao;
 import com.atmatrix.wechat.infrastructure.po.WechatMessage;
 import com.atmatrix.wechat.infrastructure.po.WechatMessageExample;
 import java.util.List;
-
-import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
 
 public interface WechatMessageMapper {
@@ -12,7 +10,7 @@ public interface WechatMessageMapper {
 
     Long insert(WechatMessage record);
 
-    Integer insertSelective(WechatMessage record);
+    Long insertSelective(WechatMessage record);
 
     List<WechatMessage> selectByExampleWithBLOBs(WechatMessageExample example);
 

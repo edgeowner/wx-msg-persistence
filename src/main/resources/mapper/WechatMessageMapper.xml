@@ -1,391 +1,401 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atmatrix.wechat.infrastructure.dao.WechatMessageMapper">
-    <resultMap id="BaseResultMap" type="com.atmatrix.wechat.infrastructure.po.WechatMessage">
-        <constructor>
-            <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
-            <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="msg_type" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="msg_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="member_wxid" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="member_nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <arg column="is_distinct" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <arg column="kafka_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-        </constructor>
-    </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="com.atmatrix.wechat.infrastructure.po.WechatMessage">
-        <constructor>
-            <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
-            <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="msg_type" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="msg_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="member_wxid" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="member_nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <arg column="is_distinct" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <arg column="kafka_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="msg_text" javaType="java.lang.String" jdbcType="LONGVARCHAR"/>
-        </constructor>
-    </resultMap>
-    <sql id="Example_Where_Clause">
-        <where>
-            <foreach collection="oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" prefixOverrides="and" suffix=")">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
-                                             separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
+  <resultMap id="BaseResultMap" type="com.atmatrix.wechat.infrastructure.po.WechatMessage">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_phones" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="is_distinct" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="kafka_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.atmatrix.wechat.infrastructure.po.WechatMessage">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_phones" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="is_distinct" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="kafka_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="msg_text" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
             </foreach>
-        </where>
-    </sql>
-    <sql id="Update_By_Example_Where_Clause">
-        <where>
-            <foreach collection="example.oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" prefixOverrides="and" suffix=")">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
-                                             separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
-            </foreach>
-        </where>
-    </sql>
-    <sql id="Base_Column_List">
-    id, msg_id, msg_type, msg_url, member_wxid, member_nickname, group_id, group_nickname, 
-    is_delete, is_distinct, kafka_time, send_time, create_time, update_time
+          </trim>
+        </if>
+      </foreach>
+    </where>
   </sql>
-    <sql id="Blob_Column_List">
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, msg_id, msg_type, msg_url, member_wxid, member_phones, member_nickname, group_id, 
+    group_nickname, is_delete, is_distinct, kafka_time, send_time, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
     msg_text
   </sql>
-    <select id="selectByExampleWithBLOBs" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessageExample"
-            resultMap="ResultMapWithBLOBs">
-        select
-        <if test="distinct">
-            distinct
-        </if>
-        'true' as QUERYID,
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
-        from wechat_message
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
-    </select>
-    <select id="selectByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessageExample"
-            resultMap="BaseResultMap">
-        select
-        <if test="distinct">
-            distinct
-        </if>
-        'true' as QUERYID,
-        <include refid="Base_Column_List"/>
-        from wechat_message
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
-    </select>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessage">
+  <select id="selectByExampleWithBLOBs" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessageExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from wechat_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from wechat_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessage">
     insert into wechat_message (id, msg_id, msg_type, 
-      msg_url, member_wxid, member_nickname, 
-      group_id, group_nickname, is_delete, 
-      is_distinct, kafka_time, send_time, 
-      create_time, update_time, msg_text
-      )
+      msg_url, member_wxid, member_phones, 
+      member_nickname, group_id, group_nickname, 
+      is_delete, is_distinct, kafka_time, 
+      send_time, create_time, update_time, 
+      msg_text)
     values (#{id,jdbcType=BIGINT}, #{msgId,jdbcType=VARCHAR}, #{msgType,jdbcType=INTEGER}, 
-      #{msgUrl,jdbcType=VARCHAR}, #{memberWxid,jdbcType=VARCHAR}, #{memberNickname,jdbcType=VARCHAR}, 
-      #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
-      #{isDistinct,jdbcType=BIT}, #{kafkaTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, 
-      now(),now(), #{msgText,jdbcType=LONGVARCHAR}
-      )
+      #{msgUrl,jdbcType=VARCHAR}, #{memberWxid,jdbcType=VARCHAR}, #{memberPhones,jdbcType=VARCHAR}, 
+      #{memberNickname,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, 
+      #{isDelete,jdbcType=BIT}, #{isDistinct,jdbcType=BIT}, #{kafkaTime,jdbcType=TIMESTAMP}, 
+      #{sendTime,jdbcType=TIMESTAMP},now(),now(),
+      #{msgText,jdbcType=LONGVARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessage">
-        insert into wechat_message
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="msgId != null">
-                msg_id,
-            </if>
-            <if test="msgType != null">
-                msg_type,
-            </if>
-            <if test="msgUrl != null">
-                msg_url,
-            </if>
-            <if test="memberWxid != null">
-                member_wxid,
-            </if>
-            <if test="memberNickname != null">
-                member_nickname,
-            </if>
-            <if test="groupId != null">
-                group_id,
-            </if>
-            <if test="groupNickname != null">
-                group_nickname,
-            </if>
-            <if test="isDelete != null">
-                is_delete,
-            </if>
-            <if test="isDistinct != null">
-                is_distinct,
-            </if>
-            <if test="kafkaTime != null">
-                kafka_time,
-            </if>
-            <if test="sendTime != null">
-                send_time,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="msgText != null">
-                msg_text,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
-            <if test="msgId != null">
-                #{msgId,jdbcType=VARCHAR},
-            </if>
-            <if test="msgType != null">
-                #{msgType,jdbcType=INTEGER},
-            </if>
-            <if test="msgUrl != null">
-                #{msgUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="memberWxid != null">
-                #{memberWxid,jdbcType=VARCHAR},
-            </if>
-            <if test="memberNickname != null">
-                #{memberNickname,jdbcType=VARCHAR},
-            </if>
-            <if test="groupId != null">
-                #{groupId,jdbcType=VARCHAR},
-            </if>
-            <if test="groupNickname != null">
-                #{groupNickname,jdbcType=VARCHAR},
-            </if>
-            <if test="isDelete != null">
-                #{isDelete,jdbcType=BIT},
-            </if>
-            <if test="isDistinct != null">
-                #{isDistinct,jdbcType=BIT},
-            </if>
-            <if test="kafkaTime != null">
-                #{kafkaTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="sendTime != null">
-                #{sendTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="msgText != null">
-                #{msgText,jdbcType=LONGVARCHAR},
-            </if>
-        </trim>
-    </insert>
-    <select id="countByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessageExample"
-            resultType="java.lang.Long">
-        select count(*) from wechat_message
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-    </select>
-    <update id="updateByExampleSelective" parameterType="map">
-        update wechat_message
-        <set>
-            <if test="record.id != null">
-                id = #{record.id,jdbcType=BIGINT},
-            </if>
-            <if test="record.msgId != null">
-                msg_id = #{record.msgId,jdbcType=VARCHAR},
-            </if>
-            <if test="record.msgType != null">
-                msg_type = #{record.msgType,jdbcType=INTEGER},
-            </if>
-            <if test="record.msgUrl != null">
-                msg_url = #{record.msgUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="record.memberWxid != null">
-                member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
-            </if>
-            <if test="record.memberNickname != null">
-                member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
-            </if>
-            <if test="record.groupId != null">
-                group_id = #{record.groupId,jdbcType=VARCHAR},
-            </if>
-            <if test="record.groupNickname != null">
-                group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
-            </if>
-            <if test="record.isDelete != null">
-                is_delete = #{record.isDelete,jdbcType=BIT},
-            </if>
-            <if test="record.isDistinct != null">
-                is_distinct = #{record.isDistinct,jdbcType=BIT},
-            </if>
-            <if test="record.kafkaTime != null">
-                kafka_time = #{record.kafkaTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.sendTime != null">
-                send_time = #{record.sendTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.createTime != null">
-                create_time = #{record.createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.updateTime != null">
-                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.msgText != null">
-                msg_text = #{record.msgText,jdbcType=LONGVARCHAR},
-            </if>
-        </set>
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByExampleWithBLOBs" parameterType="map">
-        update wechat_message
-        set id = #{record.id,jdbcType=BIGINT},
-        msg_id = #{record.msgId,jdbcType=VARCHAR},
-        msg_type = #{record.msgType,jdbcType=INTEGER},
-        msg_url = #{record.msgUrl,jdbcType=VARCHAR},
-        member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
-        member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
-        group_id = #{record.groupId,jdbcType=VARCHAR},
-        group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
-        is_delete = #{record.isDelete,jdbcType=BIT},
-        is_distinct = #{record.isDistinct,jdbcType=BIT},
-        kafka_time = #{record.kafkaTime,jdbcType=TIMESTAMP},
-        send_time = #{record.sendTime,jdbcType=TIMESTAMP},
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-        msg_text = #{record.msgText,jdbcType=LONGVARCHAR}
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByExample" parameterType="map">
-        update wechat_message
-        set id = #{record.id,jdbcType=BIGINT},
-        msg_id = #{record.msgId,jdbcType=VARCHAR},
-        msg_type = #{record.msgType,jdbcType=INTEGER},
-        msg_url = #{record.msgUrl,jdbcType=VARCHAR},
-        member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
-        member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
-        group_id = #{record.groupId,jdbcType=VARCHAR},
-        group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
-        is_delete = #{record.isDelete,jdbcType=BIT},
-        is_distinct = #{record.isDistinct,jdbcType=BIT},
-        kafka_time = #{record.kafkaTime,jdbcType=TIMESTAMP},
-        send_time = #{record.sendTime,jdbcType=TIMESTAMP},
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-
-    <insert id="batchInsert" keyProperty="id" useGeneratedKeys="true" parameterType="java.util.List">
-        insert into wechat_message(
+  <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessage">
+    insert into wechat_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgId != null">
         msg_id,
-        msg_text,
+      </if>
+      <if test="msgType != null">
         msg_type,
+      </if>
+      <if test="msgUrl != null">
         msg_url,
+      </if>
+      <if test="memberWxid != null">
         member_wxid,
+      </if>
+      <if test="memberPhones != null">
+        member_phones,
+      </if>
+      <if test="memberNickname != null">
         member_nickname,
+      </if>
+      <if test="groupId != null">
         group_id,
+      </if>
+      <if test="groupNickname != null">
         group_nickname,
+      </if>
+      <if test="isDelete != null">
         is_delete,
+      </if>
+      <if test="isDistinct != null">
         is_distinct,
+      </if>
+      <if test="kafkaTime != null">
         kafka_time,
+      </if>
+      <if test="sendTime != null">
         send_time,
+      </if>
+      <if test="createTime != null">
         create_time,
-        update_time
-        )values
-        <foreach collection="list" item="item" index="index" separator=",">
-            (
-            #{item.msgId},
-            #{item.msgText},
-            #{item.msgType},
-            #{item.msgUrl},
-            #{item.memberWxid},
-            #{item.memberNickname},
-            #{item.groupId},
-            #{item.groupNickname},
-            0,
-            0,
-            #{item.kafkaTime},
-            #{item.sendTime},
-            NOW(),
-            NOW()
-            )
-        </foreach>
-    </insert>
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="msgText != null">
+        msg_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null">
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="msgUrl != null">
+        #{msgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="memberWxid != null">
+        #{memberWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPhones != null">
+        #{memberPhones,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNickname != null">
+        #{memberNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupNickname != null">
+        #{groupNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="isDistinct != null">
+        #{isDistinct,jdbcType=BIT},
+      </if>
+      <if test="kafkaTime != null">
+        #{kafkaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgText != null">
+        #{msgText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessageExample" resultType="java.lang.Long">
+    select count(*) from wechat_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update wechat_message
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.msgId != null">
+        msg_id = #{record.msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.msgType != null">
+        msg_type = #{record.msgType,jdbcType=INTEGER},
+      </if>
+      <if test="record.msgUrl != null">
+        msg_url = #{record.msgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberWxid != null">
+        member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberPhones != null">
+        member_phones = #{record.memberPhones,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberNickname != null">
+        member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupNickname != null">
+        group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.isDistinct != null">
+        is_distinct = #{record.isDistinct,jdbcType=BIT},
+      </if>
+      <if test="record.kafkaTime != null">
+        kafka_time = #{record.kafkaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendTime != null">
+        send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.msgText != null">
+        msg_text = #{record.msgText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update wechat_message
+    set id = #{record.id,jdbcType=BIGINT},
+      msg_id = #{record.msgId,jdbcType=VARCHAR},
+      msg_type = #{record.msgType,jdbcType=INTEGER},
+      msg_url = #{record.msgUrl,jdbcType=VARCHAR},
+      member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
+      member_phones = #{record.memberPhones,jdbcType=VARCHAR},
+      member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
+      group_id = #{record.groupId,jdbcType=VARCHAR},
+      group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      is_distinct = #{record.isDistinct,jdbcType=BIT},
+      kafka_time = #{record.kafkaTime,jdbcType=TIMESTAMP},
+      send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      msg_text = #{record.msgText,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update wechat_message
+    set id = #{record.id,jdbcType=BIGINT},
+      msg_id = #{record.msgId,jdbcType=VARCHAR},
+      msg_type = #{record.msgType,jdbcType=INTEGER},
+      msg_url = #{record.msgUrl,jdbcType=VARCHAR},
+      member_wxid = #{record.memberWxid,jdbcType=VARCHAR},
+      member_phones = #{record.memberPhones,jdbcType=VARCHAR},
+      member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
+      group_id = #{record.groupId,jdbcType=VARCHAR},
+      group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      is_distinct = #{record.isDistinct,jdbcType=BIT},
+      kafka_time = #{record.kafkaTime,jdbcType=TIMESTAMP},
+      send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <insert id="batchInsert" keyProperty="id" useGeneratedKeys="true" parameterType="java.util.List">
+    insert into wechat_message(
+    msg_id,
+    msg_text,
+    msg_type,
+    msg_url,
+    member_wxid,
+    member_nickname,
+    member_phones,
+    group_id,
+    group_nickname,
+    is_delete,
+    is_distinct,
+    kafka_time,
+    send_time,
+    create_time,
+    update_time
+    )values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.msgId},
+      #{item.msgText},
+      #{item.msgType},
+      #{item.msgUrl},
+      #{item.memberWxid},
+      #{item.memberNickname},
+      #{item.memberPhones},
+      #{item.groupId},
+      #{item.groupNickname},
+      0,
+      0,
+      #{item.kafkaTime},
+      #{item.sendTime},
+      NOW(),
+      NOW()
+      )
+    </foreach>
+  </insert>
 </mapper>

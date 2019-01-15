@@ -27,7 +27,7 @@ public class RegexUtil {
 
     }
     public static void main(String[] args) {
-        String str = "胡崇旺¹⁵⁸¹⁸⁷³⁶⁸⁸⁵ w22352352352523 ww 13817556839 185210673380000000";
+        String str = "高涛\uD83D\uDC49 ¹⁸⁶⁸⁸⁶⁶²⁹⁸¹\n";
 //        String pattern = "\\p{N}";
         System.out.println(getPhone(Junidecode.unidecode(str)));
         System.out.println(getPhone(str));

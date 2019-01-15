@@ -62,9 +62,11 @@ public class WechatMessageMgtImpl implements WechatMessageMgt {
         wechatMessage.setMsgId(wechatTextDto.getId());
         wechatMessage.setMsgText(wechatTextDto.getText());
         wechatMessage.setMemberWxid(wxid);
+        wechatMessage.setMemberPhones(wechatTextDto.getPno());
         wechatMessage.setMemberNickname(wechatTextDto.getNm());
         wechatMessage.setGroupId(groupId);
         wechatMessage.setGroupNickname(wechatTextDto.getGn());
+
         wechatMessage.setIsDelete(Boolean.FALSE);
         wechatMessage.setIsDistinct(Boolean.TRUE);
         wechatMessage.setSendTime(sdate);

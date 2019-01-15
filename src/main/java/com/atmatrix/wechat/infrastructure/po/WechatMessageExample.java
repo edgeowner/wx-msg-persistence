@@ -435,6 +435,76 @@ public class WechatMessageExample {
             return (Criteria) this;
         }
 
+        public Criteria andMemberPhonesIsNull() {
+            addCriterion("member_phones is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesIsNotNull() {
+            addCriterion("member_phones is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesEqualTo(String value) {
+            addCriterion("member_phones =", value, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesNotEqualTo(String value) {
+            addCriterion("member_phones <>", value, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesGreaterThan(String value) {
+            addCriterion("member_phones >", value, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesGreaterThanOrEqualTo(String value) {
+            addCriterion("member_phones >=", value, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesLessThan(String value) {
+            addCriterion("member_phones <", value, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesLessThanOrEqualTo(String value) {
+            addCriterion("member_phones <=", value, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesLike(String value) {
+            addCriterion("member_phones like", value, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesNotLike(String value) {
+            addCriterion("member_phones not like", value, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesIn(List<String> values) {
+            addCriterion("member_phones in", values, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesNotIn(List<String> values) {
+            addCriterion("member_phones not in", values, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesBetween(String value1, String value2) {
+            addCriterion("member_phones between", value1, value2, "memberPhones");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberPhonesNotBetween(String value1, String value2) {
+            addCriterion("member_phones not between", value1, value2, "memberPhones");
+            return (Criteria) this;
+        }
+
         public Criteria andMemberNicknameIsNull() {
             addCriterion("member_nickname is null");
             return (Criteria) this;
