@@ -10,7 +10,7 @@ server:
 
 logging:
   config: classpath:log4j2.xml
-
+  path: ./logs
 
 spring:
   application:
@@ -53,7 +53,7 @@ spring:
         exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
         session-stat-enable: true
         session-stat-max-count: 100000
-         # 你可以配置principalSessionName，使得druid能够知道当前的session的用户是谁=admin
+        # 你可以配置principalSessionName，使得druid能够知道当前的session的用户是谁=admin
         principal-session-name: admin
         principal-cookie-name: admin
         profile-enable: true
@@ -99,16 +99,26 @@ spring:
       location:
       max-request-size: 10MB
       max-file-size: 5MB
-  boot:
-    admin:
-      client:
-        url: http://localhost:8082/wechat/admin
-        username: admin
-        password: admin
-        instance:
-          metadata:
-            user.name: ${spring.security.user.name}
-            user.password: ${spring.security.user.password}
+
+
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    metadata-map:
+      management:
+        context-path: ${server.servlet.context-path}/actuator
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+    health-check-url-path:  http://localhost:${server.port}${server.servlet.context-path}/actuator/health
+    status-page-url: http://localhost:${server.port}${server.servlet.context-path}/actuator/info
+    home-page-url: http://localhost:${server.port}${server.servlet.context-path}
+
+  client:
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+    eureka-server-u-r-l-context: ${server.servlet.context-path}
 
 
 
@@ -131,6 +141,8 @@ mybatis:
   # 开启驼峰匹配
   configuration:
     map-underscore-to-camel-case: true
+
+
 
 
 #spring.aop.proxy-target-class=false

@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -35,7 +36,6 @@ public class CustomerAspectLog {
     ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("CustomerAspectLog-Thread-%d").build();
 
     ThreadLocal<Long> startTime = new ThreadLocal<Long>();
-
 
 
     @Pointcut("@annotation(com.atmatrix.wechat.common.annotation.CustomerLog)")
@@ -72,7 +72,10 @@ public class CustomerAspectLog {
 
         // 请求的参数
         Object[] args = point.getArgs();
-        String params = gson.toJson(args[0]);
+        String params = null;
+        if (null != args && args.length != 0) {
+            params = gson.toJson(args[0]);
+        }
         log.info(MessageFormat.format("CustomerAspect Request: Method: [{0}]", requestMethod));
         log.info(MessageFormat.format("CustomerAspect Request: URI: [{0}]", requestURI));
         log.info(MessageFormat.format("CustomerAspect Request: URL: [{0}]", requestURL));
@@ -89,7 +92,7 @@ public class CustomerAspectLog {
     public void doAfterReturning(Object object) {
         // 处理完请求，返回内容
         log.info(MessageFormat.format("CustomerAspect Response Data: [{0}]", gson.toJson(object)));
-        log.info(MessageFormat.format("CustomerAspect Response Execute Time: [{0}]" ,(System.currentTimeMillis() - startTime.get())));
+        log.info(MessageFormat.format("CustomerAspect Response Execute Time: [{0}]", (System.currentTimeMillis() - startTime.get())));
     }
 
 
