@@ -12,16 +12,21 @@ logging:
   config: classpath:log4j2.xml
   path: ./logs
 
+
+
 spring:
+
   application:
     name: wx-msg-persistence
+
   aop:
     auto: true
     proxy-target-class: false
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/wechat_msg?useUnicode=true&character_set_server=utf8mb4&serverTimezone=Asia/Shanghai&useSSL=true
+    url: jdbc:mysql://119.3.24.108:9001/wechat_msg?useUnicode=true&character_set_server=utf8mb4&serverTimezone=Asia/Shanghai&useSSL=true
     username: wechat_msg
-    password: wechat_msg
+    password: j8G&L4G^J9ui6789
+#    password: wechat_msg
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -88,7 +93,7 @@ spring:
     consumer:
       group-id: wx_msg_10
       enable-auto-commit: false
-      auto-offset-reset: earliest
+      auto-offset-reset: latest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
@@ -101,24 +106,29 @@ spring:
       max-file-size: 5MB
 
 
-
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 10
+    leaseRenewalIntervalInSeconds: 30
     metadata-map:
       management:
         context-path: ${server.servlet.context-path}/actuator
       user.name: ${spring.security.user.name}
       user.password: ${spring.security.user.password}
-    health-check-url-path:  http://localhost:${server.port}${server.servlet.context-path}/actuator/health
-    status-page-url: http://localhost:${server.port}${server.servlet.context-path}/actuator/info
-    home-page-url: http://localhost:${server.port}${server.servlet.context-path}
+
+    health-check-url-path: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}/actuator/health
+    status-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}/actuator/info
+    home-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
 
   client:
-    registryFetchIntervalSeconds: 5
+    registryFetchIntervalSeconds: 30
     service-url:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
-    eureka-server-u-r-l-context: ${server.servlet.context-path}
+#      defaultZone: ${EUREKA_SERVICE_URL:http://47.110.251.61:8761}/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://127.0.0.1:8761}/eureka/
+    eureka-server-u-r-l-context: /wechat/euraka
+    eureka-server-port: 8761
+
 
 
 

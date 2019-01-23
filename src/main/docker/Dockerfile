@@ -3,7 +3,6 @@ USER root
 RUN apk --no-cache update && \
     apk --no-cache upgrade && \
     apk --no-cache add tzdata
-
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ENV TZ Asia/Shanghai
 VOLUME /tmp
