@@ -23,7 +23,7 @@ spring:
     auto: true
     proxy-target-class: false
   datasource:
-    url: jdbc:mysql://119.3.24.108:9001/wechat_msg?useUnicode=true&character_set_server=utf8mb4&serverTimezone=Asia/Shanghai&useSSL=true
+    url: jdbc:mysql://119.3.24.108:9001/wechat_msg?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=true
     username: wechat_msg
     password: j8G&L4G^J9ui6789
 #    password: wechat_msg
@@ -103,7 +103,7 @@ spring:
       file-size-threshold: 0
       location:
       max-request-size: 10MB
-      max-file-size: 5MB
+      max-file-size: 8MB
 
 
 eureka:
@@ -124,8 +124,8 @@ eureka:
   client:
     registryFetchIntervalSeconds: 30
     service-url:
-#      defaultZone: ${EUREKA_SERVICE_URL:http://47.110.251.61:8761}/eureka/
-      defaultZone: ${EUREKA_SERVICE_URL:http://127.0.0.1:8761}/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://47.110.251.61:8761}/eureka/
+#      defaultZone: ${EUREKA_SERVICE_URL:http://127.0.0.1:8761}/eureka/
     eureka-server-u-r-l-context: /wechat/euraka
     eureka-server-port: 8761
 
