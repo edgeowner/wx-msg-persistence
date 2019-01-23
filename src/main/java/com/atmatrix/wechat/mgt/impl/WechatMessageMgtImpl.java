@@ -22,7 +22,7 @@ public class WechatMessageMgtImpl implements WechatMessageMgt {
 
     @Override
     public Long insertWechatMessage(WechatTextDto wechatTextDto) {
-        log.info(MessageFormat.format("To Insert Date:{0}", wechatTextDto.toString()));
+        log.info(MessageFormat.format("To Insert Data:{0}", wechatTextDto.toString()));
         Integer type = 0;
         if (!StringUtils.isEmpty(wechatTextDto.getTp())) {
             type = Integer.valueOf(wechatTextDto.getTp());

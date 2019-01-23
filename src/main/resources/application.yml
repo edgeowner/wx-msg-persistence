@@ -1,6 +1,6 @@
 ##项目启动端口,默认8080
 server:
-  port: 8080
+  port: 4113
   tomcat:
     uri-encoding: UTF-8
     max-threads: 1000
@@ -85,7 +85,8 @@ spring:
       password: admin
       roles: ACTUATOR_ADMIN
   kafka:
-    bootstrap-servers: 119.3.44.28:9092,119.3.47.237:9092,119.3.40.178:9092,119.3.42.210:9092
+#    bootstrap-servers: 119.3.44.28:9092,119.3.47.237:9092,119.3.40.178:9092,119.3.42.210:9092
+    bootstrap-servers: draftelf01:9092,draftelf02:9092,draftelf03:9092,draftelf04:9092
     template:
       default-topic:
     listener:
@@ -117,7 +118,7 @@ eureka:
     health-check-url-path: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}/actuator/health
     status-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}/actuator/info
     home-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}
-    ip-address: 127.0.0.1
+    ip-address: 119.3.62.127
     prefer-ip-address: true
 
   client:
