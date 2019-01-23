@@ -83,7 +83,6 @@ public class CustomerAspectLog {
         log.info(MessageFormat.format("CustomerAspect Request: IP: [{0}]", ip));
         log.info(MessageFormat.format("CustomerAspect Request: Execute Time: [{0}]", time));
         log.info(MessageFormat.format("CustomerAspect Class Method Names: [{0}.{1}]", className, methodName));
-        log.info(MessageFormat.format("CustomerAspect Class Method Params: [{0}]", params));
         log.info(MessageFormat.format("CustomerAspect Class Method Description: [{0}]", customerLog.value()));
         return result;
     }

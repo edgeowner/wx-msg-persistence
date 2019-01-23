@@ -4,13 +4,13 @@ server:
   tomcat:
     uri-encoding: UTF-8
     max-threads: 1000
-    max-http-header-size: 819
+    max-http-post-size: 8192
+    max-http-header-size: 1024000
   servlet:
     context-path: /wechat/persistence
 
 logging:
   config: classpath:log4j2.xml
-  path: ./logs
 
 
 
@@ -93,7 +93,7 @@ spring:
     consumer:
       group-id: wx_msg_10
       enable-auto-commit: false
-      auto-offset-reset: latest
+      auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
@@ -114,7 +114,6 @@ eureka:
         context-path: ${server.servlet.context-path}/actuator
       user.name: ${spring.security.user.name}
       user.password: ${spring.security.user.password}
-
     health-check-url-path: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}/actuator/health
     status-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}/actuator/info
     home-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}
@@ -142,6 +141,11 @@ management:
   endpoint:
     health:
       show-details: always
+    logfile:
+      enabled: true
+      external-file: /logs/kafka-consumer.log
+    metrics:
+      enabled: true
 
 mybatis:
   # 扫描classpath下mapper目录下的所有.xml文件

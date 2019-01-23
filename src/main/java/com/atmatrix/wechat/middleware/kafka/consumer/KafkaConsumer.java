@@ -17,8 +17,7 @@ public class KafkaConsumer {
     @Autowired
     private WechatMessageApplication wchatMessageApplication;
 
-
-    @KafkaListener(id = "wx_msg_pers_2", topics = {"draftelf.draft.wechat.raw"})
+    @KafkaListener(id = "wx_msg_id_1", topics = {"draftelf.draft.wechat.raw"})
     public void listen(String data) {
         Gson gson = new Gson();
         WechatTextDto wechatTextDto = gson.fromJson(data, WechatTextDto.class);
