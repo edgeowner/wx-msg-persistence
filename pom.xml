@@ -75,18 +75,12 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Druid Pool -->
-        <!--<dependency>-->
-            <!--<groupId>com.alibaba</groupId>-->
-            <!--<artifactId>druid</artifactId>-->
-            <!--<version>1.1.12</version>-->
-        <!--</dependency>-->
+        <!--Druid Pool-->
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
+            <artifactId>druid</artifactId>
+            <version>1.1.12</version>
         </dependency>
-
         <!-- pagehelper分页 start -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -95,6 +89,13 @@
         </dependency>
         <!-- pagehelper分页 start -->
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <!--mysql为8.0以上版本连接驱动支持jar-->
+            <!--<version>8.0.11</version>-->
+            <version>6.0.6</version>
+        </dependency>
 
 
         <dependency>
@@ -120,7 +121,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
 
 
         <dependency>
@@ -226,6 +226,7 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
+
         <!--Eureka 客户端配置 End-->
     </dependencies>
 
@@ -261,17 +262,17 @@
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <!--mysql为8.0以上版本连接驱动支持jar-->
-                        <!--<version>8.0.11</version>-->
-                        <version>6.0.6</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>mysql</groupId>-->
+                        <!--<artifactId>mysql-connector-java</artifactId>-->
+                        <!--&lt;!&ndash;mysql为8.0以上版本连接驱动支持jar&ndash;&gt;-->
+                        <!--&lt;!&ndash;<version>8.0.11</version>&ndash;&gt;-->
+                        <!--<version>6.0.6</version>-->
+                <!--</dependency>-->
+            <!--</dependencies>-->
+        </plugin>
+    </plugins>
+</build>
 
-</project>
+        </project>
