@@ -1,55 +1,55 @@
-package com.atmatrix.wechat.config;
-
-import com.alibaba.druid.support.http.StatViewServlet;
-import com.alibaba.druid.support.http.WebStatFilter;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Created by zhangsunny0808@gmail.com  2018/01/08
- * Description:
- */
-@Configuration
-public class DruidConfig {
-
-    /**
-     * 配置druid监控
-     * 配置一个管理后台的servlet
-     * 访问地址：http://localhost:8080/druid/
-     * @return
-     */
-    @Bean
-    public ServletRegistrationBean statViewServlet() {
-        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
-        Map<String, String> initParameters = new HashMap<String, String>();
-        initParameters.put("loginUsername", "admin");//属性见：com.alibaba.druid.support.http.ResourceServlet
-        initParameters.put("loginPassword", "123456");
-        initParameters.put("allow", "");//默认允许所有
-        initParameters.put("deny", "");
-        bean.setInitParameters(initParameters);
-        return bean;
-    }
-
-    /**
-     * 配置一个web监控的filter
-     * @return
-     */
-    @Bean
-    public FilterRegistrationBean webStatFilter() {
-        FilterRegistrationBean filterBean = new FilterRegistrationBean();
-        filterBean.setFilter(new WebStatFilter());
-        filterBean.setUrlPatterns(Arrays.asList("/*"));
-        Map<String, String> initParameters = new HashMap<String, String>();
-        initParameters.put("exclusions", "*.js,*.css,/druid/*");//属性见：com.alibaba.druid.support.http.WebStatFilter
-        filterBean.setInitParameters(initParameters);
-
-        return filterBean;
-    }
-
-}
+//package com.atmatrix.wechat.config;
+//
+//import com.alibaba.druid.pool.DruidDataSource;
+//import com.alibaba.druid.support.http.StatViewServlet;
+//import com.alibaba.druid.support.http.WebStatFilter;
+//import org.springframework.boot.context.properties.ConfigurationProperties;
+//import org.springframework.boot.web.servlet.FilterRegistrationBean;
+//import org.springframework.boot.web.servlet.ServletComponentScan;
+//import org.springframework.boot.web.servlet.ServletRegistrationBean;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//
+//import javax.sql.DataSource;
+//import java.util.Arrays;
+//import java.util.HashMap;
+//import java.util.Map;
+//
+///**
+// * Created by zhangsunny0808@gmail.com  2018/01/08
+// * Description:
+// */
+//@Configuration
+//@ServletComponentScan // 用于扫描所有的Servlet、filter、listener
+//public class DruidConfig {
+//
+//
+//    @Bean
+//    public ServletRegistrationBean druidServlet() {
+//        ServletRegistrationBean reg = new ServletRegistrationBean();
+//        reg.setServlet(new StatViewServlet());
+//        reg.addUrlMappings("/druid/*");
+//        //设置控制台管理用户
+//        reg.addInitParameter("loginUsername","root");
+//        reg.addInitParameter("loginPassword","root");
+//        // 禁用HTML页面上的“Reset All”功能
+//        reg.addInitParameter("resetEnable","false");
+//        reg.addInitParameter("allow", "127.0.0.1"); //白名单
+//        return reg;
+//    }
+//
+//    @Bean
+//    public FilterRegistrationBean filterRegistrationBean() {
+//        //创建过滤器
+//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+//        filterRegistrationBean.setFilter(new WebStatFilter());
+//        Map<String, String> initParams = new HashMap<String, String>();
+//        //忽略过滤的形式
+//        initParams.put("exclusions", "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*");
+//        filterRegistrationBean.setInitParameters(initParams);
+//        //设置过滤器过滤路径
+//        filterRegistrationBean.addUrlPatterns("/*");
+//        return filterRegistrationBean;
+//    }
+//
+//}

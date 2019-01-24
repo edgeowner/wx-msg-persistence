@@ -92,7 +92,7 @@
     </appenders>
 
     <loggers>
-        <root level="INFO">
+        <root level="ALL">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
             <appender-ref ref="RollingFileWarn"/>
