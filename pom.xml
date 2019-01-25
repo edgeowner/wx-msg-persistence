@@ -69,30 +69,15 @@
             <version>${pagehelper.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+
 
         <!--Druid Pool-->
-        <!--<dependency>-->
-            <!--<groupId>com.alibaba</groupId>-->
-            <!--<artifactId>druid</artifactId>-->
-            <!--<version>1.1.12</version>-->
-        <!--</dependency>-->
-        <!-- pagehelper分页 start -->
-        <!-- Druid Pool -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
+            <version>1.1.10</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.1.2</version>
-        </dependency>
+        <!-- pagehelper分页 start -->
         <!-- pagehelper分页 start -->
 
         <dependency>
@@ -102,6 +87,8 @@
             <!--<version>8.0.11</version>-->
             <version>6.0.6</version>
         </dependency>
+
+
 
 
         <dependency>
@@ -268,15 +255,15 @@
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
                 </configuration>
-                <!--<dependencies>-->
-                    <!--<dependency>-->
-                        <!--<groupId>mysql</groupId>-->
-                        <!--<artifactId>mysql-connector-java</artifactId>-->
-                        <!--&lt;!&ndash;mysql为8.0以上版本连接驱动支持jar&ndash;&gt;-->
-                        <!--&lt;!&ndash;<version>8.0.11</version>&ndash;&gt;-->
-                        <!--<version>6.0.6</version>-->
-                <!--</dependency>-->
-            <!--</dependencies>-->
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <!--mysql为8.0以上版本连接驱动支持jar-->
+                        <!--<version>8.0.11</version>-->
+                        <version>6.0.6</version>
+                </dependency>
+            </dependencies>
         </plugin>
     </plugins>
 </build>

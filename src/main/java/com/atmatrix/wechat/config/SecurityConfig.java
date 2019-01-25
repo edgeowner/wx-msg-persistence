@@ -21,20 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.httpBasic().and()
                 .authorizeRequests()
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/",
-                        "/*.html",
-                        "/favicon.ico",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js",
-                        "/webjars/**",
-                        "/swagger-resources/**",
-                        "/*/api-docs"
-                ).permitAll()
                 .antMatchers("/actuator/**").authenticated()
                 .anyRequest().permitAll();
 
