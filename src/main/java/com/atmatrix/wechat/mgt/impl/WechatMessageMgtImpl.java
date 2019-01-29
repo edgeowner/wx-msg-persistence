@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.util.Date;
 
@@ -76,6 +77,9 @@ public class WechatMessageMgtImpl implements WechatMessageMgt {
         wechatMessage.setIsDistinct(Boolean.TRUE);
         wechatMessage.setSendTime(sdate);
         wechatMessage.setKafkaTime(kdate);
+        Date date = new Date();
+        wechatMessage.setCreateTime(date);
+        wechatMessage.setUpdateTime(date);
         Long key = wechatMessageMapper.insert(wechatMessage);
         return key;
     }

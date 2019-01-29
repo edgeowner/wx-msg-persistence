@@ -77,9 +77,10 @@ spring:
     name: druidDataSource
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    119.3.24.108:9001
+#    119.3.24.108:9001 172.16.0.59
 #    useUnicode=true&characterEncoding=utf-8
-    url: jdbc:mysql://172.16.0.59:9001/wechat_msg?useSSL=false&requireSSL=false&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://119.3.24.108:9001/wechat_msg?useSSL=false&requireSSL=false&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://127.0.0.1:3306/wechat_msg?useSSL=false&requireSSL=false&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
     username: wechat_msg
     password: j8G&L4G^J9ui6789
 #    password: wechat_msg

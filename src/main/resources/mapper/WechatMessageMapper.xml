@@ -154,8 +154,9 @@
       #{msgType,jdbcType=INTEGER}, #{msgUrl,jdbcType=VARCHAR}, #{memberWxid,jdbcType=VARCHAR}, 
       #{memberPhones,jdbcType=VARCHAR}, #{memberNickname,jdbcType=VARCHAR}, #{memberSignature,jdbcType=VARCHAR}, 
       #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
-      #{isDistinct,jdbcType=BIT}, #{kafkaTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, 
-      now(),now(), #{msgText,jdbcType=LONGVARCHAR}
+      #{isDistinct,jdbcType=BIT}, #{kafkaTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP},
+      #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP},
+      #{msgText,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMessage">
