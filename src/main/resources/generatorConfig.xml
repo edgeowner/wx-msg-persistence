@@ -61,16 +61,16 @@
         </javaClientGenerator>
 
 
-        <table tableName="wechat_message" domainObjectName="WechatMessage"
+        <table tableName="wechat_member" domainObjectName="WechatMember"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="false" enableSelectByExample="true"
                selectByExampleQueryId="true">
         </table>
-        <!--<table tableName="wechat_group" domainObjectName="WechatGroup"-->
-               <!--enableCountByExample="true" enableUpdateByExample="true"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="true"-->
-               <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
+        <table tableName="wechat_group" domainObjectName="WechatGroup"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
         <!--<table tableName="wechat_member" domainObjectName="WechatMember"-->
                <!--enableCountByExample="true" enableUpdateByExample="true"-->
                <!--enableDeleteByExample="false" enableSelectByExample="true"-->

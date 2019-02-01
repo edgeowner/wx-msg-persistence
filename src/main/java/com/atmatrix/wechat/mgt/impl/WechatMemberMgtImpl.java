@@ -6,10 +6,13 @@ import com.atmatrix.wechat.infrastructure.po.WechatMessage;
 import com.atmatrix.wechat.mgt.WechatMemberMgt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
-@Service
+@Component
 public class WechatMemberMgtImpl implements WechatMemberMgt {
 
 
@@ -22,5 +25,11 @@ public class WechatMemberMgtImpl implements WechatMemberMgt {
             return wechatMemberMapper.insert(wechatMember);
         }
         return 0L;
+    }
+
+
+    @Override
+    public void saveMemberList(List<WechatMember> wechatMembers) {
+        wechatMemberMapper.batchInsert(wechatMembers);
     }
 }

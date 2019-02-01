@@ -20,9 +20,11 @@ public class WechatMember {
 
     private String memberCity;
 
-    private String memeberSignature;
+    private String memberSignature;
 
-    private String memeberPhones;
+    private String memberPhones;
+
+    private Long groupKey;
 
     private String groupId;
 
@@ -31,6 +33,8 @@ public class WechatMember {
     private Boolean isOwner;
 
     private Boolean isDelete;
+
+    private String spiderWxid;
 
     private Date createTime;
 

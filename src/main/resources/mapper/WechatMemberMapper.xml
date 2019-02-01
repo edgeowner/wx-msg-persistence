@@ -10,12 +10,14 @@
       <arg column="member_sex" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="member_province" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="member_city" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="memeber_signature" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="memeber_phones" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_signature" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_phones" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="group_key" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="group_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="group_nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_owner" javaType="java.lang.Boolean" jdbcType="BIT" />
       <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="spider_wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
@@ -80,8 +82,8 @@
   </sql>
   <sql id="Base_Column_List">
     id, member_wxid, member_nickname, member_avatar, member_sex, member_province, member_city, 
-    memeber_signature, memeber_phones, group_id, group_nickname, is_owner, is_delete, 
-    create_time, update_time
+    member_signature, member_phones, group_key, group_id, group_nickname, is_owner, is_delete, 
+    spider_wxid, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMemberExample" resultMap="BaseResultMap">
     select
@@ -98,19 +100,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMember">
-    insert into wechat_member (member_wxid, member_nickname,
-      member_avatar, member_sex, member_province,
-      member_city, memeber_signature, memeber_phones, 
-      group_id, group_nickname, is_owner, 
-      is_delete, create_time, update_time
-      )
-    values (#{memberWxid,jdbcType=VARCHAR}, #{memberNickname,jdbcType=VARCHAR},
+  <insert id="insert" useGeneratedKeys="true" keyColumn="id" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMember">
+    insert into wechat_member (id, member_wxid, member_nickname, 
+      member_avatar, member_sex, member_province, 
+      member_city, member_signature, member_phones, 
+      group_key, group_id, group_nickname, 
+      is_owner, is_delete, spider_wxid, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{memberWxid,jdbcType=VARCHAR}, #{memberNickname,jdbcType=VARCHAR}, 
       #{memberAvatar,jdbcType=VARCHAR}, #{memberSex,jdbcType=INTEGER}, #{memberProvince,jdbcType=VARCHAR}, 
-      #{memberCity,jdbcType=VARCHAR}, #{memeberSignature,jdbcType=VARCHAR}, #{memeberPhones,jdbcType=VARCHAR}, 
-      #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, #{isOwner,jdbcType=BIT}, 
-      #{isDelete,jdbcType=BIT},now(),now()
-      )
+      #{memberCity,jdbcType=VARCHAR}, #{memberSignature,jdbcType=VARCHAR}, #{memberPhones,jdbcType=VARCHAR}, 
+      #{groupKey,jdbcType=BIGINT}, #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, 
+      #{isOwner,jdbcType=BIT}, #{isDelete,jdbcType=BIT}, #{spiderWxid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatMember">
     insert into wechat_member
@@ -136,11 +138,14 @@
       <if test="memberCity != null">
         member_city,
       </if>
-      <if test="memeberSignature != null">
-        memeber_signature,
+      <if test="memberSignature != null">
+        member_signature,
       </if>
-      <if test="memeberPhones != null">
-        memeber_phones,
+      <if test="memberPhones != null">
+        member_phones,
+      </if>
+      <if test="groupKey != null">
+        group_key,
       </if>
       <if test="groupId != null">
         group_id,
@@ -153,6 +158,9 @@
       </if>
       <if test="isDelete != null">
         is_delete,
+      </if>
+      <if test="spiderWxid != null">
+        spider_wxid,
       </if>
       <if test="createTime != null">
         create_time,
@@ -183,11 +191,14 @@
       <if test="memberCity != null">
         #{memberCity,jdbcType=VARCHAR},
       </if>
-      <if test="memeberSignature != null">
-        #{memeberSignature,jdbcType=VARCHAR},
+      <if test="memberSignature != null">
+        #{memberSignature,jdbcType=VARCHAR},
       </if>
-      <if test="memeberPhones != null">
-        #{memeberPhones,jdbcType=VARCHAR},
+      <if test="memberPhones != null">
+        #{memberPhones,jdbcType=VARCHAR},
+      </if>
+      <if test="groupKey != null">
+        #{groupKey,jdbcType=BIGINT},
       </if>
       <if test="groupId != null">
         #{groupId,jdbcType=VARCHAR},
@@ -200,6 +211,9 @@
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="spiderWxid != null">
+        #{spiderWxid,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -239,11 +253,14 @@
       <if test="record.memberCity != null">
         member_city = #{record.memberCity,jdbcType=VARCHAR},
       </if>
-      <if test="record.memeberSignature != null">
-        memeber_signature = #{record.memeberSignature,jdbcType=VARCHAR},
+      <if test="record.memberSignature != null">
+        member_signature = #{record.memberSignature,jdbcType=VARCHAR},
       </if>
-      <if test="record.memeberPhones != null">
-        memeber_phones = #{record.memeberPhones,jdbcType=VARCHAR},
+      <if test="record.memberPhones != null">
+        member_phones = #{record.memberPhones,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupKey != null">
+        group_key = #{record.groupKey,jdbcType=BIGINT},
       </if>
       <if test="record.groupId != null">
         group_id = #{record.groupId,jdbcType=VARCHAR},
@@ -256,6 +273,9 @@
       </if>
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.spiderWxid != null">
+        spider_wxid = #{record.spiderWxid,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -277,16 +297,60 @@
       member_sex = #{record.memberSex,jdbcType=INTEGER},
       member_province = #{record.memberProvince,jdbcType=VARCHAR},
       member_city = #{record.memberCity,jdbcType=VARCHAR},
-      memeber_signature = #{record.memeberSignature,jdbcType=VARCHAR},
-      memeber_phones = #{record.memeberPhones,jdbcType=VARCHAR},
+      member_signature = #{record.memberSignature,jdbcType=VARCHAR},
+      member_phones = #{record.memberPhones,jdbcType=VARCHAR},
+      group_key = #{record.groupKey,jdbcType=BIGINT},
       group_id = #{record.groupId,jdbcType=VARCHAR},
       group_nickname = #{record.groupNickname,jdbcType=VARCHAR},
       is_owner = #{record.isOwner,jdbcType=BIT},
       is_delete = #{record.isDelete,jdbcType=BIT},
+      spider_wxid = #{record.spiderWxid,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+  <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" parameterType="List">
+    insert into wechat_member (
+      member_wxid,
+      member_nickname,
+      member_avatar,
+      member_sex,
+      member_province,
+      member_city,
+      member_signature,
+      member_phones,
+      group_key,
+      group_id,
+      group_nickname,
+      is_owner,
+      is_delete,
+      spider_wxid,
+      create_time,
+      update_time
+      ) values
+        <foreach collection="list" index="index" item="item" separator=",">
+        (
+          #{item.memberWxid,jdbcType=VARCHAR},
+          #{item.memberNickname,jdbcType=VARCHAR},
+          #{item.memberAvatar,jdbcType=VARCHAR},
+          #{item.memberSex,jdbcType=INTEGER},
+          #{item.memberProvince,jdbcType=VARCHAR},
+          #{item.memberCity,jdbcType=VARCHAR},
+          #{item.memberSignature,jdbcType=VARCHAR},
+          #{item.memberPhones,jdbcType=VARCHAR},
+          #{item.groupKey,jdbcType=BIGINT},
+          #{item.groupId,jdbcType=VARCHAR},
+          #{item.groupNickname,jdbcType=VARCHAR},
+          #{item.isOwner,jdbcType=BIT},
+          #{item.isDelete,jdbcType=BIT},
+          #{item.spiderWxid,jdbcType=VARCHAR},
+          now(),
+          now()
+        )
+        </foreach>
+
+  </insert>
 </mapper>

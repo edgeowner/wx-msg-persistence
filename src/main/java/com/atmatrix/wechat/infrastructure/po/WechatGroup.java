@@ -18,6 +18,8 @@ public class WechatGroup {
 
     private Boolean isDelete;
 
+    private String spiderWxid;
+
     private Date createTime;
 
     private Date updateTime;

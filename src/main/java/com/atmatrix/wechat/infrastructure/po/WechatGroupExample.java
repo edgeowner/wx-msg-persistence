@@ -495,6 +495,76 @@ public class WechatGroupExample {
             return (Criteria) this;
         }
 
+        public Criteria andSpiderWxidIsNull() {
+            addCriterion("spider_wxid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidIsNotNull() {
+            addCriterion("spider_wxid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidEqualTo(String value) {
+            addCriterion("spider_wxid =", value, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidNotEqualTo(String value) {
+            addCriterion("spider_wxid <>", value, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidGreaterThan(String value) {
+            addCriterion("spider_wxid >", value, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidGreaterThanOrEqualTo(String value) {
+            addCriterion("spider_wxid >=", value, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidLessThan(String value) {
+            addCriterion("spider_wxid <", value, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidLessThanOrEqualTo(String value) {
+            addCriterion("spider_wxid <=", value, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidLike(String value) {
+            addCriterion("spider_wxid like", value, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidNotLike(String value) {
+            addCriterion("spider_wxid not like", value, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidIn(List<String> values) {
+            addCriterion("spider_wxid in", values, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidNotIn(List<String> values) {
+            addCriterion("spider_wxid not in", values, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidBetween(String value1, String value2) {
+            addCriterion("spider_wxid between", value1, value2, "spiderWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpiderWxidNotBetween(String value1, String value2) {
+            addCriterion("spider_wxid not between", value1, value2, "spiderWxid");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;

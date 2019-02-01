@@ -6,15 +6,17 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface WechatGroupMapper {
-    Long countByExample(WechatGroupExample example);
+    long countByExample(WechatGroupExample example);
 
-    Integer insert(WechatGroup record);
+    Long insert(WechatGroup record);
 
-    Integer insertSelective(WechatGroup record);
+    int insertSelective(WechatGroup record);
 
     List<WechatGroup> selectByExample(WechatGroupExample example);
 
-    Integer updateByExampleSelective(@Param("record") WechatGroup record, @Param("example") WechatGroupExample example);
+    int updateByExampleSelective(@Param("record") WechatGroup record, @Param("example") WechatGroupExample example);
 
-    Integer updateByExample(@Param("record") WechatGroup record, @Param("example") WechatGroupExample example);
+    int updateByExample(@Param("record") WechatGroup record, @Param("example") WechatGroupExample example);
+
+    Long batchInsert(@Param("list") List<WechatGroup> wechatGroups);
 }

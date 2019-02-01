@@ -17,12 +17,12 @@ public class KafkaConsumer {
     @Autowired
     private WechatMessageApplication wchatMessageApplication;
 
-    @KafkaListener(id = "wx_msg_id_2", topics = {"draftelf.draft.wechat.raw.test"})
-    public void listen(String data) {
-        Gson gson = new Gson();
-        WechatTextDto wechatTextDto = gson.fromJson(data, WechatTextDto.class);
-        wchatMessageApplication.saveWechatMessageMQ(wechatTextDto);
-        log.info(MessageFormat.format("KafkaConsumer收到消息：{0}", data));
-    }
+//    @KafkaListener(id = "wx_msg_id_2", topics = {"draftelf.draft.wechat.raw"})
+//    public void listen(String data) {
+//        Gson gson = new Gson();
+//        WechatTextDto wechatTextDto = gson.fromJson(data, WechatTextDto.class);
+//        wchatMessageApplication.saveWechatMessageMQ(wechatTextDto);
+//        log.info(MessageFormat.format("KafkaConsumer收到消息：{0}", data));
+//    }
 
 }
