@@ -223,7 +223,7 @@
     </update>
 
 
-    <insert id="batchInsert" keyColumn="id" keyProperty="id" useGeneratedKeys="true" parameterType="java.util.List">
+    <insert id="batchInsert" keyProperty="id" useGeneratedKeys="true" parameterType="java.util.ArrayList">
         insert into wechat_group (
         group_id,
         group_nickname,

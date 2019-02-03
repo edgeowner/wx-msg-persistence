@@ -18,5 +18,5 @@ public interface WechatGroupMapper {
 
     int updateByExample(@Param("record") WechatGroup record, @Param("example") WechatGroupExample example);
 
-    Long batchInsert(@Param("list") List<WechatGroup> wechatGroups);
+    Long batchInsert( List<WechatGroup> wechatGroups);
 }
