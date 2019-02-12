@@ -61,6 +61,10 @@ public class WechatCommonApplicationImpl implements WechatCommonApplication {
             }
         });
         wechatGroupMgt.saveGroupList(groupList);
+        groupList.stream().forEach(t -> {
+            System.out.println("sout:" + t.toString());
+        });
+
         Map<String, Long> keyMapGroupId = Maps.newHashMap();
 
         for (WechatGroup wechatGroup : groupList) {
@@ -91,9 +95,9 @@ public class WechatCommonApplicationImpl implements WechatCommonApplication {
 
         List<List<WechatMember>> membersList = Lists.partition(memberList, 500);
 
-        for (List<WechatMember> wechatMembers : membersList) {
-            wechatMemberMgt.saveMemberList(wechatMembers);
-        }
+//        for (List<WechatMember> wechatMembers : membersList) {
+//            wechatMemberMgt.saveMemberList(wechatMembers);
+//        }
 
 
     }

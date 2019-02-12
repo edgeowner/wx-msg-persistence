@@ -10,7 +10,7 @@ eureka:
     status-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}/actuator/info
     home-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}
     ip-address: 119.3.62.127
-    #    ip-address: 127.0.0.1
+#    ip-address: 127.0.0.1
     prefer-ip-address: true
 
   client:
@@ -50,6 +50,11 @@ mybatis:
   # 开启驼峰匹配
   configuration:
     map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    lazy-loading-enabled: true
+    cache-enabled: true
+    key-generators:
+
 
 
 ## 项目启动端口,默认8080
@@ -111,10 +116,11 @@ spring:
       web-stat-filter:
         enabled: true
         exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
-        session-stat-enable: true
+        session-stat-enable: 'true'
         session-stat-max-count: 100000
         principal-session-name: admin
-        profile-enable: admin
+        profile-enable: 'true'
+        url-pattern: '/*'
       stat-view-servlet:
         enabled: true
         url-pattern: /druid/*

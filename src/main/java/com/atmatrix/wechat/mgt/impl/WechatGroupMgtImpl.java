@@ -1,14 +1,10 @@
 package com.atmatrix.wechat.mgt.impl;
 
 import com.atmatrix.wechat.application.dto.GroupDto;
-import com.atmatrix.wechat.common.constants.IsDeleteEnum;
 import com.atmatrix.wechat.infrastructure.dao.WechatGroupMapper;
 import com.atmatrix.wechat.infrastructure.po.WechatGroup;
 import com.atmatrix.wechat.mgt.WechatGroupMgt;
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -42,12 +38,12 @@ public class WechatGroupMgtImpl implements WechatGroupMgt {
     @Override
     public void saveGroupList(List<WechatGroup> wechatGroupList) {
         if (!CollectionUtils.isEmpty(wechatGroupList)) {
-            Long integer = wechatGroupMapper.batchInsert(wechatGroupList);
-            System.out.println(integer);
+            Integer count = wechatGroupMapper.batchInsertGroups(wechatGroupList);
+            System.out.println(count);
         }
-        for (WechatGroup wechatGroup:wechatGroupList) {
-            Long insert = wechatGroupMapper.insert(wechatGroup);
-            System.out.println(insert);
-        }
+//        for (WechatGroup wechatGroup:wechatGroupList) {
+//            Long key = wechatGroupMapper.insert(wechatGroup);
+//            System.out.println("key:"+key);
+//        }
     }
 }

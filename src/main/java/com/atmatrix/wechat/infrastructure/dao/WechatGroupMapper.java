@@ -2,8 +2,11 @@ package com.atmatrix.wechat.infrastructure.dao;
 
 import com.atmatrix.wechat.infrastructure.po.WechatGroup;
 import com.atmatrix.wechat.infrastructure.po.WechatGroupExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+
 
 public interface WechatGroupMapper {
     long countByExample(WechatGroupExample example);
@@ -18,5 +21,5 @@ public interface WechatGroupMapper {
 
     int updateByExample(@Param("record") WechatGroup record, @Param("example") WechatGroupExample example);
 
-    Long batchInsert( List<WechatGroup> wechatGroups);
+    Integer batchInsertGroups(@Param("list") List<WechatGroup> wechatGroups);
 }

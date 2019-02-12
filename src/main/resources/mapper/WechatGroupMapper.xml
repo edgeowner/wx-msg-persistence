@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atmatrix.wechat.infrastructure.dao.WechatGroupMapper">
     <resultMap id="BaseResultMap" type="com.atmatrix.wechat.infrastructure.po.WechatGroup">
-            <id column="id" property="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
-            <result column="group_id"  property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <result column="group_nickname" property="groupNickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <result column="group_count" property="groupCount" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <result column="group_owner_wxid" property="groupOwnerWxid" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <result column="is_delete" property="isDelete" javaType="java.lang.Boolean" jdbcType="BIT"/>
-            <result column="spider_wxid" property="spiderWxid" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <id column="id" property="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <result column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="group_nickname" property="groupNickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="group_count" property="groupCount" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="group_owner_wxid" property="groupOwnerWxid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="is_delete" property="isDelete" javaType="java.lang.Boolean" jdbcType="BIT"/>
+        <result column="spider_wxid" property="spiderWxid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -92,15 +92,26 @@
             order by ${orderByClause}
         </if>
     </select>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id"
-            parameterType="com.atmatrix.wechat.infrastructure.po.WechatGroup">
-    insert into wechat_group (id, group_id, group_nickname, 
-      group_count, group_owner_wxid, is_delete, 
-      spider_wxid, create_time, update_time
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.atmatrix.wechat.infrastructure.po.WechatGroup">
+    insert into wechat_group (
+        group_id,
+        group_nickname,
+        group_count,
+        group_owner_wxid,
+        is_delete,
+        spider_wxid,
+        create_time,
+        update_time
       )
-    values (#{id,jdbcType=BIGINT}, #{groupId,jdbcType=VARCHAR}, #{groupNickname,jdbcType=VARCHAR}, 
-      #{groupCount,jdbcType=INTEGER}, #{groupOwnerWxid,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
-      #{spiderWxid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+    values (
+        #{groupId,jdbcType=VARCHAR},
+        #{groupNickname,jdbcType=VARCHAR},
+        #{groupCount,jdbcType=INTEGER},
+        #{groupOwnerWxid,jdbcType=VARCHAR},
+        #{isDelete,jdbcType=BIT},
+        #{spiderWxid,jdbcType=VARCHAR},
+        now(),
+        now()
       )
   </insert>
     <insert id="insertSelective" parameterType="com.atmatrix.wechat.infrastructure.po.WechatGroup">
@@ -223,7 +234,7 @@
     </update>
 
 
-    <insert id="batchInsert" keyProperty="id" useGeneratedKeys="true" parameterType="java.util.ArrayList">
+    <insert id="batchInsertGroups" parameterType="com.atmatrix.wechat.infrastructure.po.WechatGroup">
         insert into wechat_group (
         group_id,
         group_nickname,
