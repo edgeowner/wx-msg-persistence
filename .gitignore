@@ -30,3 +30,4 @@ src/main/java/com/atmatrix/wechat/mgt/dto/
 src/main/resources/static/
 src/main/resources/templates/
 src/test/java/com/atmatrix/wechat/infrastructure/
+.mvn/
