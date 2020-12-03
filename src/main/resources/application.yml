@@ -26,6 +26,7 @@ logging:
   config: classpath:log4j2.xml
 
 
+
 # actuator
 management:
   endpoints:
@@ -169,6 +170,8 @@ spring:
       location:
       max-request-size: 10MB
       max-file-size: 8MB
+
+
 
 
 

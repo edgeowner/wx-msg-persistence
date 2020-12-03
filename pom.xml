@@ -84,7 +84,8 @@
             <artifactId>mysql-connector-java</artifactId>
             <!--mysql为8.0以上版本连接驱动支持jar-->
             <!--<version>8.0.11</version>-->
-            <version>6.0.6</version>
+<!--            <version>6.0.6</version>-->
+            <version>5.1.38</version>
         </dependency>
 
 
@@ -183,6 +184,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.aliyun.oss</groupId>-->
+<!--            <artifactId>aliyun-sdk-oss</artifactId>-->
+<!--            <version>2.8.3</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
@@ -208,7 +214,23 @@
             <artifactId>junidecode</artifactId>
             <version>${junidecode.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.3.3</version>
+        </dependency>
 
+        <dependency>
+            <groupId>cn.smallbun.screw</groupId>
+            <artifactId>screw-core</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.2</version>
+        </dependency>
 
         <!--Eureka 客户端配置 Start-->
         <dependency>
@@ -240,6 +262,59 @@
             </plugin>
 
             <plugin>
+                <groupId>cn.smallbun.screw</groupId>
+                <artifactId>screw-maven-plugin</artifactId>
+                <version>1.0.5</version>
+                <dependencies>
+                    <!-- HikariCP -->
+                    <dependency>
+                        <groupId>com.zaxxer</groupId>
+                        <artifactId>HikariCP</artifactId>
+                        <version>3.4.5</version>
+                    </dependency>
+                    <!--mysql driver-->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.49</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <!--username-->
+                    <username>aesir</username>
+                    <!--password-->
+                    <password>Eh3NgmyzxxhhohFq</password>
+                    <!--driveruserId="aesir"
+                        password="Eh3NgmyzxxhhohFq">-->
+                    <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                    <!--jdbc url-->
+                    <jdbcUrl>jdbc:mysql://47.100.94.134:3001/asgard?autoReconnect=true&amp;characterEncoding=utf8</jdbcUrl>
+                    <!--生成文件类型-->
+                    <fileType>MD</fileType>
+                    <!--打开文件输出目录-->
+                    <openOutputDir>true</openOutputDir>
+                    <!--生成模板-->
+                    <produceType>freemarker</produceType>
+                    <!--文档名称 为空时:将采用[数据库名称-描述-版本号]作为文档名称-->
+                    <!--<docName>测试文档名称</docName>-->
+                    <!--描述-->
+                    <description>数据库文档生成</description>
+                    <!--版本-->
+                    <version>${project.version}</version>
+                    <!--标题-->
+                    <title>asgard数据库文档</title>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.7</version>
@@ -248,6 +323,7 @@
                         <!--这里是配置generatorConfig.xml的路径
                          不写默认在resources目录下找generatorConfig.xml文件
                          -->
+
                     </configurationFile>
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
@@ -258,7 +334,7 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <!--mysql为8.0以上版本连接驱动支持jar-->
                         <!--<version>8.0.11</version>-->
-                        <version>6.0.6</version>
+                        <version>5.1.38</version>
                     </dependency>
                 </dependencies>
             </plugin>
